@@ -16,7 +16,7 @@ import TypingText from "../ui/typing-text";
 const Header = ({ fontColor = "gray-900" }) => {
   return (
     <HeaderClient>
-      <div className="topBar bg-tertiary/80 text-tertiary-foreground py-2 text-center text-sm backdrop-blur-sm">
+      {/* <div className="  topBar bg-tertiary/80 text-tertiary-foreground py-2 text-center text-sm backdrop-blur-sm">
         <div className="container mx-auto flex items-center justify-between px-1 max-sm:px-5 max-sm:py-2 md:justify-center max-xl:px-5">
           <div className="left max-sm:hidden w-full h-8 flex items-center justify-center">
             <p>
@@ -49,9 +49,9 @@ const Header = ({ fontColor = "gray-900" }) => {
           </div>
           <div className="right hidden w-full xl:block"></div>
         </div>
-      </div>
-      <div className="container mx-auto flex items-center justify-start px-1 py-4 max-sm:px-5 max-sm:py-2 gap-8">
-        <div className="logo max-sm:w-auto">
+      </div> */}
+      <div className="container  mx-auto flex items-center justify-between text-center px-4 py-2 max-sm:px-5 max-sm:py-2 gap-8">
+        <div className="logo max-sm:w-auto *:">
           <NextImage
             src="/images/aqua-logo-transparent.png"
             alt="Logo"
@@ -61,12 +61,12 @@ const Header = ({ fontColor = "gray-900" }) => {
           />
         </div>
         <nav className="menu max-lg:hidden">
-          <NavigationMenuDemo fontColor={fontColor} />
+          <NavigationMenuDemo />
         </nav>
-        <div className="hidden max-lg:block ml-auto">
+        <div className="hidden max-lg:block ">
           <SidebarTrigger />
         </div>
-        <div className="userActions flex items-center gap-4 ml-auto">
+        <div className="userActions flex items-center gap-4 ">
           <UserAvatar />
           <Button
             variant="ghost"

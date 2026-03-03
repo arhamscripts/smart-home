@@ -51,7 +51,7 @@ export default function UserAvatar() {
         <Button
           variant="ghost"
           size="lg"
-          className="cursor-pointer text-gray-300 hover:bg-gray-100 rounded-full"
+          className="cursor-pointer text-black hover:bg-gray-100 rounded-full"
         >
           <UserCircle />
           {session?.name}
