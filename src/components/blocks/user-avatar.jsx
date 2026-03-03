@@ -42,6 +42,8 @@ export default function UserAvatar() {
   }
 
   const role = session?.role ?? "user";
+  const id = session?.id ?? "unknown";
+  console.log("User Session:", id);
 
   return (
     <DropdownMenu>
@@ -49,7 +51,7 @@ export default function UserAvatar() {
         <Button
           variant="ghost"
           size="lg"
-          className="cursor-pointer text-gray-900 hover:bg-gray-100 rounded-full"
+          className="cursor-pointer text-gray-300 hover:bg-gray-100 rounded-full"
         >
           <UserCircle />
           {session?.name}
@@ -64,11 +66,14 @@ export default function UserAvatar() {
             <Link href="/admin">Dashboard</Link>
           </DropdownMenuItem>
         )}
-        <DropdownMenuItem asChild>
+        {/* <DropdownMenuItem asChild>
           <Link href="/profile">Profile</Link>
-        </DropdownMenuItem>
+        </DropdownMenuItem> */}
         <DropdownMenuItem asChild>
           <Link href="/account/settings">Settings</Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <Link href={`/orders/${session?.id}`}>My Orders</Link>
         </DropdownMenuItem>
         <DropdownMenuItem variant="destructive" onClick={signOut}>
           Logout
