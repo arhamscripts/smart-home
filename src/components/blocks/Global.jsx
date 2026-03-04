@@ -34,7 +34,7 @@ function Counter({ value, suffix = "", label, isInView }) {
  * Global Operation Localization Section
  * Enterprise-grade section showcasing global presence with animated statistics
  */
-export default function GlobalOperationLocalizationSection() {
+export default function Global() {
   const [isInView, setIsInView] = useState(false);
   const sectionRef = useRef(null);
 

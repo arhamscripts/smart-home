@@ -18,14 +18,21 @@ import FeaturesAutomation from '@/components/blocks/features-automation'
 import React from 'react'
 import CustomerReviews from '@/components/blocks/customer-reviews'
 import HeroComponent from '@/components/blocks/HeroComponent'
-import GlobalOperationLocalizationSection from '@/components/blocks/GlobalOperationLocalizationSection'
+import Global from '@/components/blocks/Global'
+import StayInspired from '@/components/blocks/StayInspired'
+import StayInspiredCards from '@/components/blocks/StayInspiredCards'
+import ContactUS from '@/components/blocks/ContactUs'
 
 const page = () => {
   return (
     <div className='w-full '>
       <Header />
       <HeroComponent />
-      <GlobalOperationLocalizationSection/>
+      <StayInspired/>
+      <StayInspiredCards/>
+      <Global />
+      <ContactUS/>
+      <Footer />
       {/* <HeroSlider  /> */}
       {/* <HeroCards /> */}
       {/* <Categories /> */}
@@ -42,7 +49,6 @@ const page = () => {
       <OurTeam />
       <Faq /> */}
       {/* <Newsletter /> */}
-      <Footer />
     </div>
   )
 }
