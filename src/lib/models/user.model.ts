@@ -1,12 +1,12 @@
 import { InferInsertModel, InferSelectModel } from "drizzle-orm";
-import { userProfile } from "@/lib/db/schema";
+import { user } from "@/lib/db/schema";
 
 /**
  * UserProfile returned from the database (SELECT)
  */
-export type UserProfile = InferSelectModel<typeof userProfile>;
+export type User = InferSelectModel<typeof user>;
 
 /**
  * Payload used when creating a user profile (INSERT)
  */
-export type NewUserProfile = InferInsertModel<typeof userProfile>;
+export type NewUser = InferInsertModel<typeof user>;
