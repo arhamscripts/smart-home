@@ -18,11 +18,6 @@ export default function UserAvatar() {
   const { data } = authClient.useSession();
   const user = data?.user ?? undefined;
 
-  // Loading state — render nothing to avoid layout shift
-  if (user === undefined) {
-    return <div className="h-10 w-24" />;
-  }
-
   if (!user) {
     return (
       <Link href="/login">
