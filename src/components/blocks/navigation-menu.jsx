@@ -16,84 +16,45 @@ import {
 } from "@/components/ui/navigation-menu"
 import { ArrowRight } from "lucide-react"
 
-const Components = [
-  {
-    title: "Alert Dialog",
-    href: "/docs/primitives/alert-dialog",
-    description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
-  },
-  {
-    title: "Hover Card",
-    href: "/docs/primitives/hover-card",
-    description:
-      "For sighted users to preview content available behind a link.",
-  },
-  {
-    title: "Progress",
-    href: "/docs/primitives/progress",
-    description:
-      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-  },
-  {
-    title: "Scroll-area",
-    href: "/docs/primitives/scroll-area",
-    description: "Visually or semantically separates content.",
-  },
-  {
-    title: "Tabs",
-    href: "/docs/primitives/tabs",
-    description:
-      "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
-  },
-  {
-    title: "Tooltip",
-    href: "/docs/primitives/tooltip",
-    description:
-      "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
-  },
-]
 
-export function NavigationMenuDemo({ fontColor = "gray-900" }) {
+export function NavigationMenuDemo({}) {
   const isMobile = useIsMobile()
   
-  const textColorClass = fontColor === "white" 
-    ? "text-white hover:text-white/80" 
-    : "text-gray-900 hover:text-gray-700"
+  
 
   return (
     <NavigationMenu viewport={isMobile}>
-      <NavigationMenuList className="flex-wrap ">
+      <NavigationMenuList className="flex-wrap justify-center">
         <NavigationMenuItem>
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <Link href="/" className={`bg-transparent text-[16px] font-normal ${textColorClass} hover:bg-transparent`}>Home</Link>
+            <Link href="/" className={`bg-transparent text-[16px] font-normal text-black hover:bg-transparent`}>Home</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
 
         <NavigationMenuItem>
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <Link href="/product" className={`bg-transparent text-[16px] font-normal ${textColorClass} hover:bg-transparent`}>All Products</Link>
+            <Link href="/product" className={`bg-transparent text-[16px] font-normal text-black hover:bg-transparent`}>All Products</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
         
         <NavigationMenuItem>
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <Link href="/sale" className={`bg-transparent text-[16px] font-normal ${textColorClass} hover:bg-transparent`}>Sale</Link>
+            <Link href="/sale" className={`bg-transparent text-[16px] font-normal text-black hover:bg-transparent`}>Sale</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
 
         <NavigationMenuItem className="hidden md:block">
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <Link href="/about" className={`bg-transparent text-[16px] font-normal ${textColorClass} hover:bg-transparent`}>About</Link>
+            <Link href="/about" className={`bg-transparent text-[16px] font-normal text-black hover:bg-transparent`}>About</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem className="hidden md:block">
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <Link href="/contact" className={`bg-transparent text-[16px] font-normal ${textColorClass} hover:bg-transparent`}>Contact</Link>
+            <Link href="/contact" className={`bg-transparent text-[16px] font-normal text-black hover:bg-transparent`}>Contact</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger className={`bg-transparent text-[16px] font-normal ${textColorClass} hover:bg-transparent`}>Shop</NavigationMenuTrigger>
+          <NavigationMenuTrigger className={`bg-transparent text-[16px] font-normal text-black hover:bg-transparent`}>Shop</NavigationMenuTrigger>
           <NavigationMenuContent className='z-5'>
             <ul className="grid gap-2 md:w-100 lg:w-125 lg:grid-cols-[1fr_1fr]">
               <li className="row-span-3">

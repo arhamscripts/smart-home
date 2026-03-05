@@ -17,28 +17,38 @@ import VideoBanner from '@/components/blocks/video-banner'
 import FeaturesAutomation from '@/components/blocks/features-automation'
 import React from 'react'
 import CustomerReviews from '@/components/blocks/customer-reviews'
+import HeroComponent from '@/components/blocks/HeroComponent'
+import Global from '@/components/blocks/Global'
+import StayInspired from '@/components/blocks/StayInspired'
+import StayInspiredCards from '@/components/blocks/StayInspiredCards'
+import ContactUS from '@/components/blocks/ContactUs'
 
 const page = () => {
   return (
-    <div className='w-full'>
-      <Header fontColor="white" />
-      <HeroSlider  />
-      <HeroCards />
+    <div className='w-full '>
+      <Header />
+      <HeroComponent />
+      <StayInspired/>
+      <StayInspiredCards/>
+      <Global />
+      <ContactUS/>
+      <Footer />
+      {/* <HeroSlider  /> */}
+      {/* <HeroCards /> */}
       {/* <Categories /> */}
       {/* <FeaturedProducts /> */}
-      <DayLightSection />
-      <FeaturesAutomation />
-      <DisplayCards />
+      {/* <DayLightSection /> */}
+      {/* <FeaturesAutomation /> */}
+      {/* <DisplayCards /> */}
       {/* <SmartHomeHero /> */}
-      <VideoBanner />
+      {/* <VideoBanner />
       <CustomerReviews />
       <Services />
       <LookBook />
       <StayConnected />
       <OurTeam />
-      <Faq />
+      <Faq /> */}
       {/* <Newsletter /> */}
-      <Footer />
     </div>
   )
 }

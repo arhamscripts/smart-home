@@ -1,29 +1,65 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
+import { Separator } from "../ui/separator";
+import {
+  Facebook,
+  Instagram,
+  Linkedin,
+  Youtube,
+  Send,
+  MapPin,
+  Phone,
+  Mail,
+} from "lucide-react";
 
 const LINKS = [
-    {
-        title: "Company",
-        items: [
-            { title: "About Us", href: "#" },
-            { title: "Careers", href: "#" },
-        ],
-    },
-    {
-        title: "Pages",
-        items: [
-            { title: "Login", href: "#" },
-            { title: "Register", href: "#" },
-        ],
-    },
-    {
-        title: "Legal",
-        items: [
-            { title: "Terms", href: "#" },
-            { title: "Privacy", href: "#" },
-        ],
-    },
+  {
+    title: "Company",
+    items: [
+      { label: "About Us", href: "/about" },
+      { label: "Our Team", href: "#" },
+      { label: "Careers", href: "#" },
+      { label: "Contact Us", href: "/contact" },
+    ],
+  },
+  {
+    title: "Products",
+    items: [
+      { label: "Smart Switches", href: "#" },
+      { label: "Lighting Control", href: "#" },
+      { label: "Home Automation", href: "#" },
+      { label: "All Products", href: "/category" },
+    ],
+  },
+  {
+    title: "Resources",
+    items: [
+      { label: "Blog", href: "#" },
+      { label: "FAQs", href: "#" },
+      { label: "Support", href: "#" },
+      { label: "Documentation", href: "#" },
+    ],
+  },
+  {
+    title: "Legal",
+    items: [
+      { label: "Terms of Service", href: "#" },
+      { label: "Privacy Policy", href: "#" },
+      { label: "Return Policy", href: "#" },
+      { label: "Cookie Policy", href: "#" },
+    ],
+  },
+];
+
+const SOCIAL_LINKS = [
+  { icon: Instagram, href: "#", label: "Instagram" },
+  { icon: Facebook, href: "#", label: "Facebook" },
+  { icon: Linkedin, href: "#", label: "LinkedIn" },
+  { icon: Youtube, href: "#", label: "YouTube" },
 ];
 
 const YEAR = new Date().getFullYear();
@@ -31,40 +67,153 @@ const YEAR = new Date().getFullYear();
 export const title = "Company Footer";
 
 export default function Footer() {
-    return (
-        <footer className="w-full border-t pb-4 pt-20">
-            <div className="container mx-auto px-4">
-                <div className="mb-12 grid grid-cols-1 items-start justify-between gap-8 md:grid-cols-2 lg:gap-12">
-                    <div>
-                        <Image src="/images/aqua-logo.png" alt="Logo" width={100} height={50} />
-                        <p className="text-muted-foreground mt-3 max-w-md text-sm">
-                            Aqua Electrical is your go-to destination for high-quality Electrical products and services. We are committed to providing exceptional customer service and expert advice to help you find the perfect solutions for your needs.
-                        </p>
-                    </div>
-                    <div className="grid grid-cols-3 gap-x-8 gap-y-6 md:ml-auto">
-                        {LINKS.map(({ title, items }) => (
-                            <ul key={title} className="space-y-3">
-                                <p className="mb-3 font-semibold">{title}</p>
-                                {items.map(({ title, href }) => (
-                                    <li key={title}>
-                                        <a
-                                            href={href}
-                                            className="text-muted-foreground hover:text-foreground text-sm transition-colors"
-                                        >
-                                            {title}
-                                        </a>
-                                    </li>
-                                ))}
-                            </ul>
-                        ))}
-                    </div>
-                </div>
+  return (
+    <footer className="w-full bg-[#0f0f0f] text-white">
+      {/* Top Section: Brand + Newsletter */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 pt-16 pb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+          {/* Brand */}
+          <div className="space-y-4">
+            <Link href="/" className="inline-block">
+              <Image
+                src="/images/aqua-logo-transparent.png"
+                alt="Aqua Electrical"
+                width={120}
+                height={60}
+                className="brightness-0 invert"
+              />
+            </Link>
+            <p className="text-white/50 text-sm leading-relaxed max-w-md">
+              Aqua Electrical is your go-to destination for high-quality smart
+              home products and services. We bring intelligent living solutions
+              to elevate your everyday experience.
+            </p>
+          </div>
+
+          {/* Newsletter */}
+          <div className="lg:ml-auto lg:max-w-sm w-full space-y-4">
+            <h4 className="text-base font-semibold">Stay Updated</h4>
+            <p className="text-white/50 text-sm leading-relaxed">
+              Subscribe to our newsletter for the latest products, offers, and
+              smart home tips.
+            </p>
+            <form
+              onSubmit={(e) => e.preventDefault()}
+              className="flex items-center gap-2"
+            >
+              <Input
+                type="email"
+                placeholder="Enter your email"
+                className="bg-white/5 border-white/10 text-white placeholder:text-white/30 focus-visible:ring-0 focus-visible:border-white/30 h-11 rounded-lg flex-1"
+              />
+              <Button
+                type="submit"
+                size="icon"
+                className="h-11 w-11 rounded-lg bg-white text-[#0f0f0f] hover:bg-white/90 shrink-0"
+              >
+                <Send className="h-4 w-4" />
+              </Button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <Separator className="bg-white/10" />
+
+      {/* Middle Section: Link Columns */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 py-12">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-8">
+          {LINKS.map(({ title, items }) => (
+            <div key={title}>
+              <h5 className="text-sm font-semibold uppercase tracking-wider mb-5 text-white/80">
+                {title}
+              </h5>
+              <ul className="space-y-3">
+                {items.map(({ label, href }) => (
+                  <li key={label}>
+                    <Link
+                      href={href}
+                      className="text-white/40 hover:text-white text-sm transition-colors duration-200"
+                    >
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
-                <div className="w-full border-border flex flex-col items-start justify-center gap-6 border-t pt-4 md:flex-row md:items-center">
-                    <p className="text-muted-foreground whitespace-nowrap text-sm text-center w-full">
-                        &copy; {YEAR} Aqua Electrical. All Rights Reserved.
-                    </p>
-                </div>
-        </footer>
-    );
+          ))}
+        </div>
+      </div>
+
+      <Separator className="bg-white/10" />
+
+      {/* Contact Strip */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 py-8">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div className="flex items-center gap-3">
+            <div className="flex items-center justify-center w-9 h-9 rounded-full bg-white/5">
+              <Phone className="h-4 w-4 text-white/60" />
+            </div>
+            <div>
+              <p className="text-xs text-white/40">Call us</p>
+              <a
+                href="tel:+923368882782"
+                className="text-sm text-white/70 hover:text-white transition-colors"
+              >
+                +92 336 8882782
+              </a>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="flex items-center justify-center w-9 h-9 rounded-full bg-white/5">
+              <Mail className="h-4 w-4 text-white/60" />
+            </div>
+            <div>
+              <p className="text-xs text-white/40">Email us</p>
+              <a
+                href="mailto:aquaelectrical@gmail.com"
+                className="text-sm text-white/70 hover:text-white transition-colors"
+              >
+                aquaelectrical@gmail.com
+              </a>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="flex items-center justify-center w-9 h-9 rounded-full bg-white/5">
+              <MapPin className="h-4 w-4 text-white/60" />
+            </div>
+            <div>
+              <p className="text-xs text-white/40">Visit us</p>
+              <p className="text-sm text-white/70">
+                DHA Phase 6, Karachi
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <Separator className="bg-white/10" />
+
+      {/* Bottom Bar: Copyright + Social */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 py-6">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-white/40 text-sm">
+            &copy; {YEAR} Aqua Electrical. All Rights Reserved.
+          </p>
+          <div className="flex items-center gap-4">
+            {SOCIAL_LINKS.map(({ icon: Icon, href, label }) => (
+              <Link
+                key={label}
+                href={href}
+                aria-label={label}
+                className="flex items-center justify-center w-9 h-9 rounded-full bg-white/5 text-white/40 hover:bg-white/10 hover:text-white transition-all duration-200"
+              >
+                <Icon className="h-4 w-4" />
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
 }
