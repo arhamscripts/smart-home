@@ -1,6 +1,6 @@
+
 import React from "react";
 import { NavigationMenuDemo } from "./navigation-menu";
-import { Image } from "next/image";
 import { Heart } from "lucide-react";
 import { Button } from "../ui/button";
 import { ShoppingBag } from "lucide-react";
@@ -13,6 +13,8 @@ import HeaderClient from "./header-client";
 import NextImage from "next/image";
 import TypingText from "../ui/typing-text";
 import { ThemeToggle } from "./theme-toggle";
+import Lottie from "lottie-react";
+import animationData from "../../../public/images/Animated Dashboards.json";
 
 const Header = ({ fontColor = "gray-900" }) => {
   return (
@@ -27,6 +29,8 @@ const Header = ({ fontColor = "gray-900" }) => {
             height={50}
             className=""
           />
+
+           {/* <Lottie animationData={animationData} loop={true} /> */}
         </div>
         <nav className="menu max-lg:hidden">
           <NavigationMenuDemo />

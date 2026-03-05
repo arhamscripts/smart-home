@@ -17,7 +17,7 @@ export default function StayInspired() {
             <div className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[8rem] leading-tight">
               Stay Inspired
             </div>
-            <div className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[8rem] leading-tight mt-2">
+            <div className="text-6xl sm:text-7xl md:text-6xl lg:text-9xl xl:text-[6.5rem] leading-tight mt-2">
               With
               <span className="inline-block">
               <FuzzyText
@@ -35,7 +35,7 @@ export default function StayInspired() {
           </h1>
 
           {/* Subtitle */}
-          <p className="text-white text-md sm:text-xl md:text-2xl lg:text-3xl font-normal tracking-wide max-w-5xl mx-auto leading-relaxed">
+          <p className="text-white text-md sm:text-xl md:text-2xl lg:text-2xl font-normal tracking-wide max-w-5xl mx-auto leading-relaxed">
             It&apos;s Anchor by Aqua Electric
             Where simplicity meets sophistication.
           </p>

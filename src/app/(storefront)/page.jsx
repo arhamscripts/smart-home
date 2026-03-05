@@ -22,6 +22,7 @@ import Global from '@/components/blocks/Global'
 import StayInspired from '@/components/blocks/StayInspired'
 import StayInspiredCards from '@/components/blocks/StayInspiredCards'
 import ContactUS from '@/components/blocks/ContactUs'
+import ProductShowcase from '@/components/blocks/ProductShowcase'
 
 const page = () => {
   return (
@@ -31,6 +32,7 @@ const page = () => {
       <StayInspired/>
       <StayInspiredCards/>
       <Global />
+      <ProductShowcase/>
       <ContactUS/>
       <Footer />
       {/* <HeroSlider  /> */}
