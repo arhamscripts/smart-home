@@ -1,6 +1,3 @@
-"use client";
-
-import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { User, UserCircle } from "lucide-react";
 import { Button } from "../ui/button";
@@ -11,12 +8,15 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { signOut } from "@/server/auth";
-import { authClient } from "@/lib/auth/client";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
-export default function UserAvatar() {
+export default async function UserAvatar() {
 
-  const { data } = authClient.useSession();
-  const user = data?.user ?? undefined;
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+  const user = session?.user;
 
   if (!user) {
     return (
@@ -53,9 +53,6 @@ export default function UserAvatar() {
             <Link href="/admin">Dashboard</Link>
           </DropdownMenuItem>
         )}
-        {/* <DropdownMenuItem asChild>
-          <Link href="/profile">Profile</Link>
-        </DropdownMenuItem> */}
         <DropdownMenuItem asChild>
           <Link href="/account/settings">Settings</Link>
         </DropdownMenuItem>
