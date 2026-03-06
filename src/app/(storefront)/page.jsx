@@ -23,6 +23,7 @@ import StayInspired from '@/components/blocks/StayInspired'
 import StayInspiredCards from '@/components/blocks/StayInspiredCards'
 import ContactUS from '@/components/blocks/ContactUs'
 import ProductShowcase from '@/components/blocks/ProductShowcase'
+import HomeVideo from '@/components/blocks/HomeVideo'
 
 const page = () => {
   return (
@@ -32,6 +33,7 @@ const page = () => {
       <StayInspired/>
       <StayInspiredCards/>
       <Global />
+      <HomeVideo/>
       <ProductShowcase/>
       <ContactUS/>
       <Footer />
