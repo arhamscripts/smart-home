@@ -3,10 +3,11 @@ import React from "react";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import HeroLottie from "./HeroLottie";
+import StayInspired from "./StayInspired";
 
 export default function HeroComponent() {
   return (
-    <section className="relative overflow-hidden bg-slate-950">
+    <section className="relative overflow-visible bg-slate-950">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -top-20 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-cyan-400/15 blur-3xl" />
         <div className="absolute right-0 top-1/3 h-64 w-64 rounded-full bg-blue-600/20 blur-3xl" />
@@ -57,6 +58,7 @@ export default function HeroComponent() {
           </div>
         </div>
       </div>
+      <StayInspired />
     </section>
   );
 }

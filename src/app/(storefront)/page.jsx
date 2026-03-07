@@ -30,7 +30,6 @@ const page = () => {
     <div className='w-full '>
       <Header />
       <HeroComponent />
-      <StayInspired/>
       <StayInspiredCards/>
       <Global />
       <HomeVideo/>

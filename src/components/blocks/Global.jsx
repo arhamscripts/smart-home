@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { useCountUp } from "@/hooks/use-count-up";
+import { Globe } from "../ui/globe";
 
 /**
  * Counter component with animated number
@@ -75,22 +76,22 @@ export default function Global() {
       ref={sectionRef}
       className="w-full bg-muted py-24"
     >
-      <div className="container mx-auto px-6 max-w-7xl">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div className="container mx-auto px-6">
+        <div className="relative h-[calc(100vh-10rem)] flex gap-10 items-center">
           {/* Left Column - Content */}
-          <div className="space-y-8">
+          <div className="w-full space-y-4">
             {/* Heading with Blue Accent Bar */}
             <div className="flex items-start gap-4">
-              <div className="shrink-0 w-3 h-16 bg-linear-to-b from-blue-600 to-cyan-400 rounded-full" />
+              <div className="shrink-0 w-2 h-12 bg-linear-to-b from-blue-600 to-cyan-400 rounded" />
               <div className="space-y-2">
-                <h2 className="text-3xl md:text-4xl font-light text-foreground leading-tight">
+                <h2 className="text-3xl md:text-4xl font-semibold text-foreground leading-tight">
                   Global Operation Localization
                 </h2>
               </div>
             </div>
-                <p className="text-lg text-muted-foreground font-medium mt-10" >
-                  International subsidiaries all over the world
-                </p>
+            <p className="text-lg text-muted-foreground font-medium mt-10" >
+              International subsidiaries all over the world
+            </p>
 
             {/* Description */}
             <p className="text-base text-muted-foreground leading-relaxed max-w-xl">
@@ -123,41 +124,11 @@ export default function Global() {
             </div>
           </div>
 
-          {/* Right Column - Image */}
-          <div className="relative">
-            <div className="relative w-full h-125 rounded-xl overflow-hidden shadow-xl">
-              <div className="absolute inset-0 bg-linear-to-br from-blue-500/10 to-cyan-500/10 z-10" />
-              <Image
-                src="/images/world-placeholder.png"
-                alt="Global network map showing worldwide presence"
-                fill
-                className="object-cover animate-float"
-                priority
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </div>
-            
-            {/* Decorative Elements */}
-            <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-linear-to-br from-blue-600 to-cyan-400 rounded-full opacity-20 blur-2xl" />
-            <div className="absolute -top-4 -left-4 w-32 h-32 bg-linear-to-br from-purple-600 to-blue-600 rounded-full opacity-10 blur-3xl" />
+          <div className="w-full h-full relative overflow-hidden">
+            <Globe />
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes float {
-          0%, 100% {
-            transform: translateY(0px);
-          }
-          50% {
-            transform: translateY(-10px);
-          }
-        }
-
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
-      `}</style>
     </section>
   );
 }
