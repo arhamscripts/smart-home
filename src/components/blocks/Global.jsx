@@ -16,9 +16,9 @@ function Counter({ value, suffix = "", label, isInView }) {
 
   return (
     <Card className="border-none  transition-shadow duration-300 bg-transparent shadow-none hover:shadow-none">
-      <CardContent className="p-6">
+      <CardContent className="p-4 sm:p-6">
         <div className="flex flex-col space-y-2">
-          <div className="text-5xl font-normal text-black">
+          <div className="text-3xl font-normal text-black sm:text-4xl lg:text-5xl">
             {count}
             {suffix && <span className="text-black">{suffix}</span>}
           </div>
@@ -74,22 +74,22 @@ export default function Global() {
   return (
     <section
       ref={sectionRef}
-      className="w-full bg-muted py-24"
+      className="w-full bg-muted py-16 sm:py-20 lg:py-24"
     >
-      <div className="container mx-auto px-6">
-        <div className="relative h-[calc(100vh-10rem)] flex gap-10 items-center">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="relative grid items-center gap-10 md:grid-cols-[1fr_1fr] lg:grid-cols-[minmax(0,1fr)_minmax(320px,520px)] lg:gap-12">
           {/* Left Column - Content */}
           <div className="w-full space-y-4">
             {/* Heading with Blue Accent Bar */}
             <div className="flex items-start gap-4">
               <div className="shrink-0 w-2 h-12 bg-linear-to-b from-blue-600 to-cyan-400 rounded" />
               <div className="space-y-2">
-                <h2 className="text-3xl md:text-4xl font-semibold text-foreground leading-tight">
+                <h2 className="text-3xl font-semibold leading-tight text-foreground md:text-4xl">
                   Global Operation Localization
                 </h2>
               </div>
             </div>
-            <p className="text-lg text-muted-foreground font-medium mt-10" >
+            <p className="mt-6 text-base font-medium text-muted-foreground sm:mt-10 sm:text-lg" >
               International subsidiaries all over the world
             </p>
 
@@ -104,14 +104,14 @@ export default function Global() {
             {/* Learn More Button */}
             <Button
               size="lg"
-              className="rounded-full group transition-all duration-300 hover:shadow-lg bg-transparent border border-blue-600 text-foreground hover:bg-linear-to-r hover:from-blue-600 hover:to-cyan-400 hover:text-white"
+              className="group w-full rounded-full border border-blue-600 bg-transparent text-foreground transition-all duration-300 hover:bg-linear-to-r hover:from-blue-600 hover:to-cyan-400 hover:text-white hover:shadow-lg sm:w-fit"
             >
               Learn more
               <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Button>
 
             {/* Stats Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 pt-4 bg-muted">
+            <div className="grid grid-cols-1 gap-1 pt-4 sm:grid-cols-2 bg-muted">
               {stats.map((stat, index) => (
                 <Counter
                   key={index}
@@ -124,7 +124,7 @@ export default function Global() {
             </div>
           </div>
 
-          <div className="w-full h-full relative overflow-hidden">
+          <div className="relative hidden min-h-[280px] w-full overflow-hidden md:block md:min-h-[380px] lg:min-h-[560px]">
             <Globe />
           </div>
         </div>

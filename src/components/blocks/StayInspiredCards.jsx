@@ -30,14 +30,14 @@ const cards = [
 
 export default function StayInspiredCards() {
   return (
-    <section className="relative bg-gray-100">
+    <section className="relative bg-gray-100 py-3 sm:py-4">
       {cards.map((card, index) => (
         <div
           key={card.id}
-          className="sticky top-0 h-screen w-full p-4 md:p-6"
+          className="sticky top-0 max-md:top-20 h-[85svh] w-full p-2 sm:h-[80svh] sm:p-4 md:h-[95svh] md:p-6 lg:h-screen"
           style={{ zIndex: index + 1 }}
         >
-          <div className="relative h-full w-full rounded-3xl overflow-hidden shadow-2xl">
+          <div className="relative h-full w-full overflow-hidden rounded-[1.75rem] shadow-2xl sm:rounded-3xl">
             <Image
               src={card.image}
               alt={card.title}
@@ -51,20 +51,20 @@ export default function StayInspiredCards() {
             <div className="absolute inset-0 bg-linear-to-t from-black/75 via-black/20 to-transparent" />
 
             {/* Content */}
-            <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12 lg:p-16">
-              <p className="text-white/50 text-sm font-medium tracking-widest uppercase mb-4">
+            <div className="absolute inset-x-0 bottom-0 p-5 sm:p-8 md:p-12 lg:p-16">
+              <p className="mb-3 text-xs font-medium tracking-[0.3em] text-white/60 uppercase sm:mb-4 sm:text-sm">
                 {String(index + 1).padStart(2, '0')} /{' '}
                 {String(cards.length).padStart(2, '0')}
               </p>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white mb-3 leading-tight max-w-2xl">
+              <h2 className="mb-3 max-w-2xl text-2xl font-semibold leading-tight text-white sm:text-3xl md:text-4xl lg:text-5xl">
                 {card.title}
               </h2>
-              <p className="text-white/75 text-base md:text-lg mb-8 max-w-xl leading-relaxed">
+              <p className="mb-6 max-w-xl text-sm leading-relaxed text-white/80 sm:text-base md:mb-8 md:text-lg">
                 {card.description}
               </p>
               <Button
                 size="lg"
-                className="bg-white text-black hover:bg-white/90 px-8 py-3 rounded-full text-base font-normal shadow-lg transition-all duration-300"
+                className="w-full rounded-full bg-white px-8 py-3 text-base font-normal text-black shadow-lg transition-all duration-300 hover:bg-white/90 sm:w-auto"
               >
                 {card.buttonText}
               </Button>

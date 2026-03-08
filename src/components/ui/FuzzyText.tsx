@@ -23,11 +23,13 @@ const FuzzyText: React.FC<FuzzyTextProps> = ({
   baseIntensity = 0.18,
   hoverIntensity = 0.5,
 }) => {
+  const containerRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLCanvasElement & { cleanupFuzzyText?: () => void }>(null)
 
   useEffect(() => {
     let animationFrameId: number
     let isCancelled = false
+    let resizeTimer: ReturnType<typeof setTimeout> | null = null
     const canvas = canvasRef.current
     if (!canvas) {
       return
@@ -190,9 +192,26 @@ const FuzzyText: React.FC<FuzzyTextProps> = ({
 
     init()
 
+    const handleResize = () => {
+      if (resizeTimer) clearTimeout(resizeTimer)
+      resizeTimer = setTimeout(() => {
+        if (isCancelled) return
+        // Clean up old animation then re-init at new size
+        window.cancelAnimationFrame(animationFrameId)
+        if (canvas?.cleanupFuzzyText) {
+          canvas.cleanupFuzzyText()
+        }
+        init()
+      }, 200)
+    }
+
+    window.addEventListener("resize", handleResize)
+
     return () => {
       isCancelled = true
       window.cancelAnimationFrame(animationFrameId)
+      window.removeEventListener("resize", handleResize)
+      if (resizeTimer) clearTimeout(resizeTimer)
       if (canvas?.cleanupFuzzyText) {
         canvas.cleanupFuzzyText()
       }
@@ -208,7 +227,14 @@ const FuzzyText: React.FC<FuzzyTextProps> = ({
     hoverIntensity,
   ])
 
-  return <canvas ref={canvasRef} />
+  return (
+    <div ref={containerRef} style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+      <canvas
+        ref={canvasRef}
+        style={{ maxWidth: '100%', height: 'auto' }}
+      />
+    </div>
+  )
 }
 
 export default FuzzyText

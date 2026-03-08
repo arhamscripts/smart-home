@@ -22,10 +22,10 @@ export default async function UserAvatar() {
     return (
       <Link href="/login">
         <Button
-          size="lg"
-          className="cursor-pointer bg-gray-900 hover:bg-gray-800 text-white rounded-full"
+          size="sm"
+          className="cursor-pointer bg-gray-900 hover:bg-gray-800 text-white rounded-full sm:h-10 sm:px-4 sm:text-sm"
         >
-          <User />
+          <User className="h-4 w-4" />
           <span className="max-sm:hidden">Login/Register</span>
         </Button>
       </Link>
@@ -37,11 +37,11 @@ export default async function UserAvatar() {
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
-          size="lg"
-          className="cursor-pointer text-black hover:bg-gray-100 rounded-full"
+          size="sm"
+          className="cursor-pointer text-black hover:bg-gray-100 rounded-full sm:h-10 sm:px-4 sm:text-sm"
         >
-          <UserCircle />
-          {user?.name}
+          <UserCircle className="h-4 w-4 shrink-0" />
+          <span className="max-sm:hidden truncate max-w-[100px]">{user?.name}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>

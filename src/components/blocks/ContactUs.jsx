@@ -2,10 +2,9 @@
 
 import React, { useState } from 'react'
 import Link from 'next/link'
-import { Facebook, Instagram, Linkedin, Youtube, Phone, Mail, Send, CheckCircle } from 'lucide-react'
+import { Facebook, Instagram, Linkedin, Youtube, Phone, Mail, CheckCircle } from 'lucide-react'
 import { Input } from '../ui/input'
 import { Button } from '../ui/button'
-import { desc } from 'drizzle-orm'
 
 export default function ContactUS() {
   const [formData, setFormData] = useState({
@@ -42,22 +41,22 @@ export default function ContactUS() {
   return (
     <section>
       {/* Hero Section - Dark Background with Form */}
-      <div className="bg-[#1a1a1a] text-white pt-8">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-24">
+      <div className="bg-[#1a1a1a] pt-8 text-white">
+        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 md:px-12 md:py-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
 
             {/* Left Side - Heading */}
-            <div className="space-y-6">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-light italic leading-tight">
+            <div className="space-y-6 text-center lg:text-left">
+              <h2 className="text-3xl font-light italic leading-tight sm:text-4xl md:text-5xl lg:text-6xl">
                 Elevate your<br />living<br />experience
               </h2>
-              <p className="text-white/60 text-sm md:text-base max-w-sm leading-relaxed">
+              <p className="mx-auto max-w-sm text-sm leading-relaxed text-white/60 md:text-base lg:mx-0">
                 Register for a exclusive smart home demo at our custom built studio apartment.
               </p>
             </div>
 
             {/* Right Side - Form */}
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-5 rounded-2xl border border-white/10 bg-white/[0.03] p-5 sm:p-6">
               <Input
                 name="fullName"
                 type="text"
@@ -125,7 +124,7 @@ export default function ContactUS() {
 
       {/* Divider + Get in Touch Section */}
       <div className="bg-[#1a1a1a] text-white">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 pb-16">
+        <div className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 md:px-12">
           {/* "or" divider */}
           <div className="flex items-center justify-center py-6">
             <span className="text-white/40 text-sm">or</span>
@@ -137,12 +136,12 @@ export default function ContactUS() {
           </h3>
 
           {/* Contact info - two columns */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="mx-auto grid max-w-4xl grid-cols-1 gap-8 md:grid-cols-2">
             {/* Phone */}
             <div className="flex flex-col items-center text-center space-y-2">
               <div className="flex items-center gap-3 mb-1">
                 <Phone className="h-5 w-5 text-white" />
-                <span className="text-lg md:text-xl font-medium">+92 336 8882782</span>
+                <span className="break-all text-lg font-medium md:text-xl">+92 336 8882782</span>
               </div>
               <p className="text-white/50 text-sm">
                 to speak to our smart home consultant
@@ -153,7 +152,7 @@ export default function ContactUS() {
             <div className="flex flex-col items-center text-center space-y-2">
               <div className="flex items-center gap-3 mb-1">
                 <Mail className="h-5 w-5 text-white" />
-                <a href="mailto:aquaelectrical@gmail.com" className="text-lg md:text-xl font-medium hover:text-[#7ec8c8] transition-colors">
+                <a href="mailto:aquaelectrical@gmail.com" className="break-all text-lg font-medium transition-colors hover:text-[#7ec8c8] md:text-xl">
                   aquaelectrical@gmail.com
                 </a>
               </div>
@@ -161,29 +160,6 @@ export default function ContactUS() {
                 write to our sales team with specific requests
               </p>
             </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Footer */}
-      <div className="bg-[#111111] text-white py-6">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-white/50 text-sm">
-            Copyright &copy; {new Date().getFullYear()} Aqua Electrical All rights reserved.
-          </p>
-          <div className="flex items-center gap-5">
-            <Link href="#" className="text-white/50 hover:text-white transition-colors" aria-label="Instagram">
-              <Instagram className="h-5 w-5" />
-            </Link>
-            <Link href="#" className="text-white/50 hover:text-white transition-colors" aria-label="Facebook">
-              <Facebook className="h-5 w-5" />
-            </Link>
-            <Link href="#" className="text-white/50 hover:text-white transition-colors" aria-label="LinkedIn">
-              <Linkedin className="h-5 w-5" />
-            </Link>
-            <Link href="#" className="text-white/50 hover:text-white transition-colors" aria-label="YouTube">
-              <Youtube className="h-5 w-5" />
-            </Link>
           </div>
         </div>
       </div>

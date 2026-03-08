@@ -2,8 +2,10 @@
 
 export default function HeaderClient({ children }) {
   return (
-    <header className="container max-w-6xl left-1/2 -translate-x-1/2 fixed shadow-sm top-8 z-50 rounded-2xl bg-white">
+    <header className="fixed inset-x-0 top-3 z-50 px-3 sm:top-4 sm:px-4 lg:px-6">
+      <div className="mx-auto max-w-6xl rounded-2xl bg-white shadow-sm">
       {children}
+      </div>
     </header>
   )
 }

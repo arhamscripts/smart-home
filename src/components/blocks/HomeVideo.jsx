@@ -207,8 +207,8 @@ export default function HomeVideo() {
   }, []);
 
   return (
-    <section ref={containerRef} className="relative h-[300vh] w-full p-6">
-      <div className="sticky top-5 h-[calc(100vh-3rem)] w-full overflow-hidden rounded-3xl">
+    <section ref={containerRef} className="relative h-[250vh] w-full px-2 py-3 sm:h-[280vh] sm:p-6 lg:h-[300vh]">
+      <div className="sticky top-2 h-[calc(100svh-1rem)] w-full overflow-hidden rounded-2xl sm:top-5 sm:h-[calc(100svh-3rem)] sm:rounded-3xl lg:h-[calc(100vh-3rem)]">
         <canvas
           ref={canvasRef}
           className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
@@ -224,9 +224,9 @@ export default function HomeVideo() {
             className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none"
             style={{ opacity: 0, willChange: "transform, opacity" }}
           >
-            <div className="rounded-2xl bg-black/35 px-6 py-5 text-center text-white backdrop-blur-sm max-w-2xl mx-4">
-              <p className="text-sm uppercase tracking-[0.18em]">{ch.tag}</p>
-              <h2 className="mt-2 text-3xl font-semibold md:text-5xl">
+            <div className="mx-3 max-w-xl rounded-2xl bg-black/35 px-4 py-4 text-center text-white backdrop-blur-sm sm:mx-4 sm:max-w-2xl sm:px-6 sm:py-5">
+              <p className="text-[11px] uppercase tracking-[0.18em] sm:text-sm">{ch.tag}</p>
+              <h2 className="mt-2 text-2xl font-semibold sm:text-3xl md:text-5xl">
                 {ch.title}
               </h2>
               <p className="mt-2 text-sm text-white/80 md:text-base">

@@ -70,20 +70,20 @@ export default function Footer() {
   return (
     <footer className="w-full bg-[#0f0f0f] text-white">
       {/* Top Section: Brand + Newsletter */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 pt-16 pb-12">
+      <div className="mx-auto max-w-7xl px-4 pb-12 pt-16 sm:px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
           {/* Brand */}
-          <div className="space-y-4">
+          <div className="space-y-4 text-center lg:text-left">
             <Link href="/" className="inline-block">
               <Image
                 src="/images/aqua-logo-transparent.png"
                 alt="Aqua Electrical"
                 width={120}
                 height={60}
-                className="brightness-0 invert"
+                className="mx-auto brightness-0 invert lg:mx-0"
               />
             </Link>
-            <p className="text-white/50 text-sm leading-relaxed max-w-md">
+            <p className="text-white/50 text-sm leading-relaxed max-w-md mx-auto lg:mx-0">
               Aqua Electrical is your go-to destination for high-quality smart
               home products and services. We bring intelligent living solutions
               to elevate your everyday experience.
@@ -99,7 +99,7 @@ export default function Footer() {
             </p>
             <form
               onSubmit={(e) => e.preventDefault()}
-              className="flex items-center gap-2"
+              className="flex flex-col items-stretch gap-2 sm:flex-row sm:items-center"
             >
               <Input
                 type="email"
@@ -121,7 +121,7 @@ export default function Footer() {
       <Separator className="bg-white/10" />
 
       {/* Middle Section: Link Columns */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 py-12">
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 md:px-12">
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-8">
           {LINKS.map(({ title, items }) => (
             <div key={title}>
@@ -148,7 +148,7 @@ export default function Footer() {
       <Separator className="bg-white/10" />
 
       {/* Contact Strip */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 py-8">
+      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 md:px-12">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           <div className="flex items-center gap-3">
             <div className="flex items-center justify-center w-9 h-9 rounded-full bg-white/5">
@@ -195,7 +195,7 @@ export default function Footer() {
       <Separator className="bg-white/10" />
 
       {/* Bottom Bar: Copyright + Social */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 py-6">
+      <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 md:px-12">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-white/40 text-sm">
             &copy; {YEAR} Aqua Electrical. All Rights Reserved.

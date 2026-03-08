@@ -27,7 +27,7 @@ import HomeVideo from '@/components/blocks/HomeVideo'
 
 const page = () => {
   return (
-    <div className='w-full '>
+    <div className='w-full'>
       <Header />
       <HeroComponent />
       <StayInspiredCards/>

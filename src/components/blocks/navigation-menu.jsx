@@ -24,7 +24,7 @@ export function NavigationMenuDemo({}) {
 
   return (
     <NavigationMenu viewport={isMobile}>
-      <NavigationMenuList className="flex-wrap justify-center">
+      <NavigationMenuList className="flex justify-center gap-4">
         <NavigationMenuItem>
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
             <Link href="/" className={`bg-transparent text-[16px] font-normal text-black hover:bg-transparent`}>Home</Link>
