@@ -24,17 +24,19 @@ import StayInspiredCards from '@/components/blocks/StayInspiredCards'
 import ContactUS from '@/components/blocks/ContactUs'
 import ProductShowcase from '@/components/blocks/ProductShowcase'
 import HomeVideo from '@/components/blocks/HomeVideo'
+import Showcase from '@/components/blocks/showcase'
 
 const page = () => {
   return (
     <div className='w-full'>
       <Header />
       <HeroComponent />
-      <StayInspiredCards/>
+      <StayInspiredCards />
       <Global />
-      <HomeVideo/>
-      <ProductShowcase/>
-      <ContactUS/>
+      <HomeVideo />
+      {/* <ProductShowcase/> */}
+      <Showcase />
+      <ContactUS />
       <Footer />
       {/* <HeroSlider  /> */}
       {/* <HeroCards /> */}
