@@ -86,7 +86,9 @@ const Showcase = () => {
 
     const handlePointerDown = useCallback((e) => {
         e.preventDefault()
-        e.target.setPointerCapture(e.pointerId)
+        if (e.currentTarget.setPointerCapture) {
+            e.currentTarget.setPointerCapture(e.pointerId)
+        }
         isDragging.current = true
         updateWarmth(e.clientY)
     }, [updateWarmth])
@@ -96,7 +98,10 @@ const Showcase = () => {
         updateWarmth(e.clientY)
     }, [updateWarmth])
 
-    const handlePointerUp = useCallback(() => {
+    const handlePointerUp = useCallback((e) => {
+        if (e?.currentTarget?.hasPointerCapture?.(e.pointerId)) {
+            e.currentTarget.releasePointerCapture(e.pointerId)
+        }
         isDragging.current = false
     }, [])
 
@@ -132,7 +137,7 @@ const Showcase = () => {
                         Designed to make controlling, automating and monitoring your smart home intuitive and fun.
                     </p>
                 </div>
-                <div className='flex flex-col lg:flex-row gap-6 lg:gap-8 items-stretch'>
+                <div className='flex flex-col lg:flex-row gap-6 lg:gap-8 items-stretch z-100'>
 
                     <div
                         ref={lightCardRef}
@@ -196,32 +201,41 @@ const Showcase = () => {
 
                                 <div
                                     ref={sliderRef}
-                                    className="relative rounded-full cursor-pointer touch-none h-[200px] sm:h-[260px] lg:h-[320px]"
-                                    style={{
-                                        width: '6px',
-                                        backgroundColor: '#1e1e2a',
-                                        boxShadow: 'inset 0 1px 3px rgba(0,0,0,0.5)',
-                                    }}
+                                    className="relative w-10 sm:w-8 touch-none cursor-ns-resize h-[200px] sm:h-[260px] lg:h-[320px]"
                                     onPointerDown={handlePointerDown}
                                     onPointerMove={handlePointerMove}
                                     onPointerUp={handlePointerUp}
                                     onPointerCancel={handlePointerUp}
+                                    onPointerLeave={handlePointerUp}
+                                    role="slider"
+                                    aria-label="Light temperature"
+                                    aria-valuemin={0}
+                                    aria-valuemax={100}
+                                    aria-valuenow={pct}
                                 >
                                     <div
-                                        className="absolute bottom-0 left-0 w-full rounded-full pointer-events-none"
+                                        className="absolute inset-y-0 left-1/2 -translate-x-1/2 rounded-full w-[6px]"
                                         style={{
-                                            height: `${pct}%`,
-                                            background: `linear-gradient(to top, #d97706, ${lightColor})`,
-                                            boxShadow: `0 0 8px ${glowOuter}`,
+                                            backgroundColor: '#1e1e2a',
+                                            boxShadow: 'inset 0 1px 3px rgba(0,0,0,0.5)',
                                         }}
-                                    />
+                                    >
+                                        <div
+                                            className="absolute bottom-0 left-0 w-full rounded-full pointer-events-none"
+                                            style={{
+                                                height: `${pct}%`,
+                                                background: `linear-gradient(to top, #d97706, ${lightColor})`,
+                                                boxShadow: `0 0 8px ${glowOuter}`,
+                                            }}
+                                        />
+                                    </div>
                                     <div
                                         className="absolute left-1/2 pointer-events-none"
                                         style={{
                                             bottom: `${pct}%`,
                                             transform: 'translate(-50%, 50%)',
-                                            width: '20px',
-                                            height: '20px',
+                                            width: '22px',
+                                            height: '22px',
                                             borderRadius: '50%',
                                             background: `radial-gradient(circle at 40% 38%, #fff 0%, ${lightColor} 100%)`,
                                             border: '2.5px solid rgba(255,255,255,0.85)',
@@ -251,11 +265,11 @@ const Showcase = () => {
 
                     <div
                         ref={demoCardRef}
-                        className={`w-full lg:flex-1 flex justify-center showcase-reveal showcase-reveal--card ${demoCardInView ? 'is-visible' : ''}`}
+                        className={`w-full h-full lg:flex-1 flex justify-center showcase-reveal showcase-reveal--card ${demoCardInView ? 'is-visible' : ''}`}
                         style={{ transitionDelay: '0.3s' }}
                     >
-                        <div className="demo-frame-wrapper">
-                            <iframe id="HAdemo" title="Home Assistant Demo" src="https://demo.home-assistant.io/?frontpage" />
+                        <div className="demo-frame-wrapper  ">
+                            <iframe className=' ' id="HAdemo" title="Home Assistant Demo" src="https://demo.home-assistant.io/?frontpage" />
                         </div>
                     </div>
                 </div>
@@ -353,7 +367,7 @@ const Showcase = () => {
                         <span className="font-medium text-muted-foreground">Monitor</span>
                     </div>
                     <span className="text-muted-foreground/30">•</span>
-
+                                        
                 </div>
             </Marquee>
         </section>

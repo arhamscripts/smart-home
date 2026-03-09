@@ -111,7 +111,7 @@ export default function Global() {
             </Button>
 
             {/* Stats Grid */}
-            <div className="grid grid-cols-1 gap-1 pt-4 sm:grid-cols-2 bg-muted">
+            <div className="grid grid-cols-2 gap-1 pt-4 sm:grid-cols-2 bg-muted">
               {stats.map((stat, index) => (
                 <Counter
                   key={index}
@@ -124,7 +124,7 @@ export default function Global() {
             </div>
           </div>
 
-          <div className="relative hidden min-h-[280px] w-full overflow-hidden md:block md:min-h-[380px] lg:min-h-[560px]">
+          <div className="relative  min-h-[280px] w-full mb-8 md:min-h-[380px] lg:min-h-[560px]">
             <Globe />
           </div>
         </div>

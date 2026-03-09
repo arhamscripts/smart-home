@@ -99,7 +99,7 @@ export default function Footer() {
             </p>
             <form
               onSubmit={(e) => e.preventDefault()}
-              className="flex flex-col items-stretch gap-2 sm:flex-row sm:items-center"
+              className="flex flex-row items-stretch gap-2  sm:items-center"
             >
               <Input
                 type="email"
