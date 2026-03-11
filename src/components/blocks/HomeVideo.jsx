@@ -9,26 +9,26 @@ const chapters = [
   {
     start: 0.0,
     end: 0.3,
-    tag: "Aqua Electrical",
-    title: "Innovative Solutions for Modern Homes",
+    tag: "Welcome to Aqua Electrical",
+    title: "Powering Smarter Homes Across the Globe",
     description:
-      "Experience the future of home automation with our cutting-edge smart devices and seamless integration.",
+      "Aqua Electrical delivers world-class smart electrical solutions — engineered for reliability, built for the way you live.",
   },
   {
     start: 0.35,
     end: 0.65,
-    tag: "Smart Living",
-    title: "Connected. Intuitive. Effortless.",
+    tag: "Our Products",
+    title: "Smart Switches. Seamless Control.",
     description:
-      "Control every aspect of your home with a single touch — lighting, climate, security, and more.",
+      "From intelligent breaker panels to app-controlled sockets, our product range puts the power of your entire home in your hands.",
   },
   {
     start: 0.7,
     end: 1.0,
-    tag: "The Future is Now",
-    title: "Upgrade Your Home Today",
+    tag: "Trusted by Thousands",
+    title: "Your Home. Your Rules.",
     description:
-      "Discover our range of intelligent switches and automation systems designed for modern living.",
+      "Join thousands of homeowners who trust Aqua Electrical to automate, protect, and elevate their living spaces.",
   },
 ];
 

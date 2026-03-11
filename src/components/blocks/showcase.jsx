@@ -17,8 +17,10 @@ import {
     Lamp,
     WashingMachine,
     Coffee,
-    MonitorSpeaker
+    MonitorSpeaker,
+    SquareMinus
 } from 'lucide-react'
+import { Android } from '../ui/android'
 
 function useInView(options = {}) {
     const ref = useRef(null)
@@ -114,6 +116,16 @@ const Showcase = () => {
     const glowOuter = `rgba(${r}, ${g}, ${b}, ${0.12 + warmth * 0.18})`
     const pct = Math.round(warmth * 100)
 
+    // Container background: warmth=0 → near black, warmth=0.45 → original, warmth=1 → bright
+    // factor 0.1→2.1 keeps original colours at warmth≈0.45 while going dark/bright at extremes
+    const bgFactor = Math.min(2.2, 0.1 + warmth * 2.0)
+    const clamp = (v) => Math.round(Math.min(255, v))
+    const containerBg = `linear-gradient(135deg,
+        rgb(${clamp(30 * bgFactor)}, ${clamp(28 * bgFactor)}, ${clamp(42 * bgFactor)}),
+        rgb(${clamp(37 * bgFactor)}, ${clamp(35 * bgFactor)}, ${clamp(51 * bgFactor)}))`
+    const darkOverlayOpacity = Math.max(0, 0.85 - warmth * 0.85)
+    const imageOpacity = 0.5 + warmth * 0.5
+
     return (
         <section className='relative py-16 md:py-24 px-4 overflow-hidden'>
             <FlickeringGrid
@@ -137,7 +149,7 @@ const Showcase = () => {
                         Designed to make controlling, automating and monitoring your smart home intuitive and fun.
                     </p>
                 </div>
-                <div className='flex flex-col lg:flex-row gap-6 lg:gap-8 items-stretch z-100'>
+                <div className='flex flex-col lg:flex-row gap-6 lg:gap-2  z-100'>
 
                     <div
                         ref={lightCardRef}
@@ -147,9 +159,20 @@ const Showcase = () => {
                         <div
                             className='relative rounded-3xl overflow-hidden flex h-[360px] sm:h-[420px] lg:h-[520px]'
                             style={{
-                                background: 'linear-gradient(135deg, #1e1e2a, #252533)',
+                                background: containerBg,
+                                transition: 'background 80ms linear',
+                                willChange: 'background',
                             }}
                         >
+                            <div
+                                className="absolute inset-0 pointer-events-none z-10"
+                                style={{
+                                    background: `rgba(0,0,0,${darkOverlayOpacity})`,
+                                    boxShadow: `inset 0 0 120px rgba(0,0,0,${Math.min(0.9, darkOverlayOpacity + 0.12)})`,
+                                    transition: 'background 80ms linear, box-shadow 80ms linear',
+                                }}
+                            />
+
                             <div
                                 className="absolute inset-0 pointer-events-none"
                                 style={{
@@ -184,8 +207,9 @@ const Showcase = () => {
                                     alt="Smart Light"
                                     className={`relative z-10 object-contain w-[150px] h-[150px] sm:w-[190px] sm:h-[190px] lg:w-[230px] lg:h-[230px] showcase-light-img ${lightCardInView ? 'is-visible' : ''}`}
                                     style={{
+                                        opacity: imageOpacity,
                                         filter: `drop-shadow(0 0 ${18 + warmth * 35}px ${glowInner})`,
-                                        willChange: 'filter',
+                                        willChange: 'filter, opacity',
                                     }}
                                     draggable={false}
                                 />
@@ -268,8 +292,16 @@ const Showcase = () => {
                         className={`w-full h-full lg:flex-1 flex justify-center showcase-reveal showcase-reveal--card ${demoCardInView ? 'is-visible' : ''}`}
                         style={{ transitionDelay: '0.3s' }}
                     >
-                        <div className="demo-frame-wrapper  ">
-                            <iframe className=' ' id="HAdemo" title="Home Assistant Demo" src="https://demo.home-assistant.io/?frontpage" />
+                        <div className="demo-frame-wrapper h-90 sm:h-105 lg:h-130">
+                            <Android className="h-full w-full">
+                                <iframe
+                                    id="HAdemo"
+                                    title="Home Assistant Demo"
+                                    src="https://demo.home-assistant.io/?frontpage"
+                                    className="block h-full w-full border-0"
+                                    loading="lazy"
+                                />
+                            </Android>
                         </div>
                     </div>
                 </div>
@@ -302,7 +334,7 @@ const Showcase = () => {
                     </div>
                     <span className="text-muted-foreground/30">•</span>
                     
-                    <div className="flex flex-col items-center gap-2">
+                    {/* <div className="flex flex-col items-center gap-2">
                         <WashingMachine className="w-8 h-8" style={{ color: '#8B5CF6' }} />
                         <span className="font-medium text-muted-foreground">Washing Machine</span>
                     </div>
@@ -317,7 +349,7 @@ const Showcase = () => {
                     <div className="flex flex-col items-center gap-2">
                         <Speaker className="w-8 h-8" style={{ color: '#EF4444' }} />
                         <span className="font-medium text-muted-foreground">Smart Speaker</span>
-                    </div>
+                    </div> */}
                     <span className="text-muted-foreground/30">•</span>
                     
                     <div className="flex flex-col items-center gap-2">
@@ -326,7 +358,7 @@ const Showcase = () => {
                     </div>
                     <span className="text-muted-foreground/30">•</span>
                     
-                    <div className="flex flex-col items-center gap-2">
+                    {/* <div className="flex flex-col items-center gap-2">
                         <Thermometer className="w-8 h-8" style={{ color: '#EC4899' }} />
                         <span className="font-medium text-muted-foreground">Thermostat</span>
                     </div>
@@ -335,7 +367,7 @@ const Showcase = () => {
                     <div className="flex flex-col items-center gap-2">
                         <Laptop className="w-8 h-8" style={{ color: '#6366F1' }} />
                         <span className="font-medium text-muted-foreground">Laptop</span>
-                    </div>
+                    </div> */}
                     <span className="text-muted-foreground/30">•</span>
                     
                     <div className="flex flex-col items-center gap-2">
@@ -345,8 +377,8 @@ const Showcase = () => {
                     <span className="text-muted-foreground/30">•</span>
                     
                     <div className="flex flex-col items-center gap-2">
-                        <Microwave className="w-8 h-8" style={{ color: '#F97316' }} />
-                        <span className="font-medium text-muted-foreground">Microwave</span>
+                        <SquareMinus  className="w-8 h-8" style={{ color: '#F97316' }} />
+                        <span className="font-medium text-muted-foreground">Smart Switches</span>
                     </div>
                     <span className="text-muted-foreground/30">•</span>
                     
@@ -356,17 +388,17 @@ const Showcase = () => {
                     </div>
                     <span className="text-muted-foreground/30">•</span>
                     
-                    <div className="flex flex-col items-center gap-2">
+                    {/* <div className="flex flex-col items-center gap-2">
                         <Watch className="w-8 h-8" style={{ color: '#84CC16' }} />
                         <span className="font-medium text-muted-foreground">Smart Watch</span>
-                    </div>
-                    <span className="text-muted-foreground/30">•</span>
+                    </div> */}
+                    {/* <span className="text-muted-foreground/30">•</span> */}
                     
-                    <div className="flex flex-col items-center gap-2">
+                    {/* <div className="flex flex-col items-center gap-2">
                         <MonitorSpeaker className="w-8 h-8" style={{ color: '#22D3EE' }} />
                         <span className="font-medium text-muted-foreground">Monitor</span>
-                    </div>
-                    <span className="text-muted-foreground/30">•</span>
+                    </div> */}
+                    {/* <span className="text-muted-foreground/30">•</span> */}
                                         
                 </div>
             </Marquee>

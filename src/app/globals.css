@@ -19,23 +19,13 @@ body {
 }
 
 .demo-frame-wrapper {
-    border-radius: 24px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, .15), 0 0 0 1px rgba(255,255,255,0.05);
-    height: 360px;
     width: 100%;
-    max-width: 400px;
-    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  max-width: 540px;
+    margin-inline: auto;
     position: relative;
-}
-@media (min-width: 640px) {
-    .demo-frame-wrapper {
-        height: 420px;
-    }
-}
-@media (min-width: 1024px) {
-    .demo-frame-wrapper {
-        height: 520px;
-    }
 }
 .demo-frame-wrapper #HAdemo {
     border: 0;

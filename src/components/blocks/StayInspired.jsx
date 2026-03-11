@@ -17,7 +17,7 @@ export default function StayInspired() {
               baseIntensity={0.2}
               hoverIntensity={0.08}
             >
-              Aqua Electric
+              Aqua Electrical
             </FuzzyText>
           </div>
         </h1>

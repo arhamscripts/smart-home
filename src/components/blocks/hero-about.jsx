@@ -2,6 +2,7 @@
 import { useRef } from 'react';
 import { Button } from "../ui/button"
 import { motion, useScroll, useTransform } from 'motion/react'
+import Link from 'next/link';
 
 const HeroAbout = () => {
     const sectionRef = useRef(null);
@@ -17,9 +18,11 @@ const HeroAbout = () => {
                 <div className="text-[clamp(4rem,8vw,8rem)] text-white font-normal leading-none">
                     About Us
                 </div>
-                <Button size="lg" className="rounded-full bg-white px-8 py-3 text-base font-normal text-black shadow-lg transition-all duration-300 hover:bg-white/90 sm:w-auto">
+                <Link href="/about" >
+                <Button size="lg" className="rounded-full bg-white px-8 mt-3 py-3 text-base font-normal text-black shadow-lg transition-all duration-300 cursor-pointer hover:bg-white/90 sm:w-auto">
                     Learn More
                 </Button>
+                </Link>
             </motion.div>
         </section>
     )
