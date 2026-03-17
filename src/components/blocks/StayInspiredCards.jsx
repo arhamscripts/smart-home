@@ -34,7 +34,7 @@ export default function StayInspiredCards() {
               src={card.image}
               alt={card.title}
               fill
-              className="object-cover"
+              className="md:object-cover object-center transition-transform duration-300 hover:scale-105"
               sizes="100vw"
               priority={index === 0}
             />

@@ -255,8 +255,8 @@ const Showcase = () => {
                         className={`w-full h-full lg:flex-1 flex justify-center items-start showcase-reveal showcase-reveal--card ${demoCardInView ? 'is-visible' : ''}`}
                         style={{ transitionDelay: '0.3s' }}
                     >
-                        <div className="demo-frame-wrapper h-180 lg:h-160 flex justify-start">
-                            <Android className="h-full w-fit">
+                        <div className="demo-frame-wrapper h-[37rem] sm:h-160 lg:h-160 max-w-full overflow-hidden flex justify-center">
+                            <Android className="h-full w-auto max-w-full shrink-0">
                                 <iframe
                                     id="HAdemo"
                                     title="Home Assistant Demo"

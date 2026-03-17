@@ -1,19 +1,71 @@
+const PHONE_WIDTH = 380;
+const PHONE_HEIGHT = 830;
+const SCREEN_X = 9;
+const SCREEN_Y = 14;
+const SCREEN_WIDTH = 360;
+const SCREEN_HEIGHT = 800;
+const SCREEN_RADIUS = 33;
+
+const LEFT_PCT = (SCREEN_X / PHONE_WIDTH) * 100;
+const TOP_PCT = (SCREEN_Y / PHONE_HEIGHT) * 100;
+const WIDTH_PCT = (SCREEN_WIDTH / PHONE_WIDTH) * 100;
+const HEIGHT_PCT = (SCREEN_HEIGHT / PHONE_HEIGHT) * 100;
+const RADIUS_H = (SCREEN_RADIUS / SCREEN_WIDTH) * 100;
+const RADIUS_V = (SCREEN_RADIUS / SCREEN_HEIGHT) * 100;
+
 export function Android({
-  width = 500,
-  height = 830,
   src,
   videoSrc,
   children,
+  className,
+  style,
   ...props
 }) {
   return (
-    <svg
-      width={width}
-      height={height}
-      viewBox="0 0 380 830"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      {...props}>
+    <div
+      className={`relative inline-block h-full w-auto max-w-full align-middle leading-none ${className || ""}`}
+      style={{
+        aspectRatio: `${PHONE_WIDTH}/${PHONE_HEIGHT}`,
+        ...style,
+      }}
+      {...props}
+    >
+      <div
+        className="absolute z-0 overflow-hidden"
+        style={{
+          left: `${LEFT_PCT}%`,
+          top: `${TOP_PCT}%`,
+          width: `${WIDTH_PCT}%`,
+          height: `${HEIGHT_PCT}%`,
+          borderRadius: `${RADIUS_H}% / ${RADIUS_V}%`,
+        }}
+      >
+        {src && (
+          <img
+            src={src}
+            alt=""
+            className="block size-full object-cover"
+          />
+        )}
+        {videoSrc && (
+          <video
+            className="block size-full object-cover"
+            src={videoSrc}
+            autoPlay
+            loop
+            muted
+            playsInline
+          />
+        )}
+        {children && <div className="size-full overflow-hidden">{children}</div>}
+      </div>
+
+      <svg
+        viewBox="0 0 380 830"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className=" inset-0 size-full pointer-events-none"
+      >
       <path
         d="M376 153H378C379.105 153 380 153.895 380 155V249C380 250.105 379.105 251 378 251H376V153Z"
         className="fill-[#E5E5E5] dark:fill-[#404040]" />
@@ -33,40 +85,6 @@ export function Android({
       </g>
       <circle cx="189" cy="28" r="9" className="fill-white dark:fill-[#262626]" />
       <circle cx="189" cy="28" r="4" className="fill-[#E5E5E5] dark:fill-[#404040]" />
-      {src && (
-        <image
-          href={src}
-          width="360"
-          height="800"
-          className="size-full object-cover"
-          preserveAspectRatio="xMidYMid slice"
-          clipPath="url(#clip0_514_20855)" />
-      )}
-      {videoSrc && (
-        <foreignObject
-          width="380"
-          height="820"
-          clipPath="url(#clip0_514_20855)"
-          preserveAspectRatio="xMidYMid slice">
-          <video
-            className="size-full object-cover"
-            src={videoSrc}
-            autoPlay
-            loop
-            muted
-            playsInline />
-        </foreignObject>
-      )}
-      {children && (
-        <foreignObject
-          x="9"
-          y="14"
-          width="360"
-          height="800"
-          clipPath="url(#clip0_514_20855)">
-          <div className="size-full overflow-hidden rounded-[33px]">{children}</div>
-        </foreignObject>
-      )}
       <defs>
         <clipPath id="clip0_514_20855">
           <rect
@@ -78,6 +96,7 @@ export function Android({
             transform="translate(9 14)" />
         </clipPath>
       </defs>
-    </svg>
+      </svg>
+    </div>
   );
 }

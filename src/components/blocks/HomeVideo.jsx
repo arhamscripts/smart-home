@@ -37,6 +37,7 @@ const LERP = 0.1;
 
 export default function HomeVideo() {
   const containerRef = useRef(null);
+  const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const ctxRef = useRef(null);
   const framesRef = useRef([]);
@@ -45,6 +46,8 @@ export default function HomeVideo() {
   const currentRef = useRef(0);
   const runningRef = useRef(false);
   const [isInView, setIsInView] = useState(false);
+  const [useVideoFallback, setUseVideoFallback] = useState(false);
+  const [firstFrameReady, setFirstFrameReady] = useState(false);
 
   // ── Extract frames from an offscreen video into ImageBitmap array ─────
   // The first frame is drawn to canvas immediately so the section isn't blank.
@@ -56,6 +59,16 @@ export default function HomeVideo() {
 
     let cancelled = false;
 
+    const isIOS =
+      typeof navigator !== "undefined" &&
+      (/iPad|iPhone|iPod/.test(navigator.userAgent) ||
+        (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1));
+
+    if (isIOS) {
+      setUseVideoFallback(true);
+      return;
+    }
+
     const offscreen = document.createElement("video");
     offscreen.muted = true;
     offscreen.playsInline = true;
@@ -64,8 +77,28 @@ export default function HomeVideo() {
 
     const seekTo = (time) =>
       new Promise((resolve) => {
-        const done = () => resolve();
-        offscreen.addEventListener("seeked", done, { once: true });
+        if (Math.abs(offscreen.currentTime - time) < 0.001) {
+          resolve();
+          return;
+        }
+
+        let finished = false;
+        const done = () => {
+          if (finished) return;
+          finished = true;
+          resolve();
+        };
+
+        const timeout = window.setTimeout(done, 800);
+        offscreen.addEventListener(
+          "seeked",
+          () => {
+            window.clearTimeout(timeout);
+            done();
+          },
+          { once: true }
+        );
+
         offscreen.currentTime = time;
       });
 
@@ -90,12 +123,19 @@ export default function HomeVideo() {
       // Extract frame 0 first → draw it immediately so the section isn't blank
       await seekTo(0);
       if (cancelled) return;
+      if (typeof createImageBitmap !== "function") {
+        setUseVideoFallback(true);
+        return;
+      }
+
       try {
         const first = await createImageBitmap(offscreen);
         framesRef.current.push(first);
         ctx.drawImage(first, 0, 0);
+        setFirstFrameReady(true);
       } catch {
-        return; // createImageBitmap not supported — canvas stays blank
+        setUseVideoFallback(true);
+        return;
       }
 
       // Extract remaining frames
@@ -106,11 +146,13 @@ export default function HomeVideo() {
         try {
           framesRef.current.push(await createImageBitmap(offscreen));
         } catch {
+          setUseVideoFallback(true);
           return;
         }
       }
     };
 
+    offscreen.load();
     extract();
 
     return () => {
@@ -156,7 +198,7 @@ export default function HomeVideo() {
       // Draw whichever frames are available so far (progressively improves)
       const frames = framesRef.current;
       const ctx = ctxRef.current;
-      if (ctx && frames.length > 0) {
+      if (!useVideoFallback && ctx && frames.length > 0) {
         const idx = Math.round(value * (frames.length - 1));
         if (idx !== lastIdx) {
           lastIdx = idx;
@@ -192,7 +234,7 @@ export default function HomeVideo() {
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [useVideoFallback]);
 
   // ── Visibility toggle ─────────────────────────────────────────────────
   useEffect(() => {
@@ -212,8 +254,26 @@ export default function HomeVideo() {
         <canvas
           ref={canvasRef}
           className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
-            isInView ? "opacity-100" : "opacity-0"
+            isInView && !useVideoFallback && firstFrameReady
+              ? "opacity-100"
+              : "opacity-0"
           }`}
+        />
+
+        <video
+          ref={videoRef}
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
+            isInView && (useVideoFallback || !firstFrameReady)
+              ? "opacity-100"
+              : "opacity-0"
+          }`}
+          src={VIDEO_SRC}
+          preload="auto"
+          autoPlay
+          loop
+          muted
+          playsInline
+          webkit-playsinline="true"
         />
 
         {/* Chapter text overlays */}
