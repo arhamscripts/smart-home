@@ -38,7 +38,6 @@ const page = () => {
       </section>
       <HomeVideo />
       <Showcase />
-      <ContactUS />
       <Footer />
     </div>
   )
