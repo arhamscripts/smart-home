@@ -56,12 +56,6 @@ export function NavigationMenuDemo({ }) {
             <Link href="/about" className={`bg-transparent text-[16px] font-normal text-black hover:bg-transparent`}>About</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <Link href="/product" className={`bg-transparent text-[16px] font-normal text-black hover:bg-transparent`}> Products</Link>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
-
 
 
 

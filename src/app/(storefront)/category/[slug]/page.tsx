@@ -3,6 +3,7 @@ import Header from '@/components/blocks/header';
 import Banner from './components/banner';
 import FilterBar from './components/filter-bar';
 import Products from './components/products';
+import { BannerCarousel } from './components/banner-carousel';
 
 const page = async ({ params }: { params: Promise<{ slug: string }> }) => {
     const { slug } = await params
@@ -10,7 +11,8 @@ const page = async ({ params }: { params: Promise<{ slug: string }> }) => {
         <>
             <Header />
             <div className='relative w-full'>
-                <Banner />
+                {/* <Banner /> */}
+                <BannerCarousel />
                 <FilterBar />
                 <Products />
             </div>

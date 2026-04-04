@@ -1,282 +1,272 @@
 "use client"
 
-import React from 'react'
+import React, { useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import {
-  Award,
-  Users,
-  Target,
-  Heart,
-  Zap,
   Shield,
-  Clock,
-  CheckCircle,
+  Zap,
   ArrowRight,
   Lightbulb,
-  Home,
-  Star
+  Heart,
+  CheckCircle,
+  Cpu,
+  Activity,
+  Network
 } from 'lucide-react'
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../ui/card'
 import { Button } from '../ui/button'
-import { Badge } from '../ui/badge'
-import { Separator } from '../ui/separator'
 import OurTeam from './our-team'
 
-
-// Values data
 const values = [
   {
     icon: Lightbulb,
-    title: "Innovation",
-    description: "We constantly push boundaries to bring you the latest smart home technology."
+    title: "Relentless Innovation",
+    description: "We constantly push boundaries to bring you the latest in smart grid automation and contextual intelligence."
   },
   {
     icon: Shield,
-    title: "Quality",
-    description: "Every product is carefully tested to meet our high standards of excellence."
+    title: "Uncompromising Quality",
+    description: "Military-grade testing ensures every Aqua Smart node operates flawlessly within your home's ecosystem."
   },
   {
     icon: Heart,
-    title: "Customer First",
-    description: "Your satisfaction is our priority. We're here to help every step of the way."
+    title: "Human-Centric",
+    description: "Technology should serve people, not confuse them. Our interfaces are designed for intuitive, seamless living."
   },
   {
-    icon: Zap,
-    title: "Efficiency",
-    description: "Our solutions are designed to save energy and make your life easier."
+    icon: Activity,
+    title: "Profound Efficiency",
+    description: "Our solutions are architected from the ground up to eliminate energy waste and optimize your entire property."
   },
 ]
 
-
-
-// Timeline/Milestones
-const milestones = [
-  { year: "2009", title: "Company Founded", description: "Started as a small electrical shop in Karachi" },
-  { year: "2014", title: "Expansion", description: "Opened 5 more branches across Pakistan" },
-  { year: "2018", title: "Smart Home Focus", description: "Pivoted to smart home automation solutions" },
-  { year: "2022", title: "Online Launch", description: "Launched e-commerce platform nationwide" },
-  { year: "2025", title: "Industry Leader", description: "Recognized as Pakistan's top smart home retailer" },
-]
+const FADE_UP_VARIANTS = {
+  hidden: { opacity: 0, y: 40 },
+  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 200, damping: 20 } }
+}
 
 export default function About() {
+  const containerRef = useRef(null)
+  const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start end", "end start"] })
+  const yImage = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"])
+
   return (
-    <section className="bg-white">
-      {/* Cinematic Hero Banner */}
-      <div className="relative w-full h-[60vh] min-h-[500px] md:min-h-[80vh] flex items-center justify-center overflow-hidden">
-        {/* Background Image & Overlays */}
+    <div className="bg-zinc-50 min-h-screen selection:bg-cyan-100 selection:text-cyan-900 pointer-events-auto">
+
+      {/* Cinematic Ethereal Hero (Light Mode) */}
+      <section className="relative w-full pt-40 pb-20 md:pt-52 md:pb-40 overflow-hidden flex flex-col items-center justify-center">
+        {/* Background Image with Light Mode Overlays */}
         <div className="absolute inset-0 z-0">
-          <img
+          <Image
             src="https://images.unsplash.com/photo-1558002038-1055907df827?q=80&w=2670&auto=format&fit=crop"
-            alt="Smart Home Interconnected"
-            className="w-full h-full object-cover object-center transform scale-105 duration-1000"
+            alt="Aqua Smart Home Ecosystem"
+            fill
+            priority
+            className="object-cover"
           />
-          <div className="absolute inset-0 bg-zinc-950/60" /> {/* Dark Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-zinc-900/40" />
+          {/* Frosted / Bright Overlay to ensure dark text readability */}
+          <div className="absolute inset-0 bg-linear-to-b from-white/20 via-zinc-50/60 to-zinc-50/80 z-20" />
         </div>
 
-        {/* Content */}
-        <div className="relative z-10 container mx-auto px-4 text-center text-white mt-16 md:mt-24">
+        {/* Soft Ambient Mesh Background */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden mix-blend-multiply">
+          <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[70%] rounded-full bg-cyan-200/40 blur-[120px] opacity-70 animate-pulse" style={{ animationDuration: '8s' }} />
+          <div className="absolute top-[20%] -right-[10%] w-[40%] h-[60%] rounded-full bg-blue-200/30 blur-[100px] opacity-60 animate-pulse" style={{ animationDuration: '12s' }} />
+        </div>
+
+        <div className="relative z-10 container mx-auto px-4 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.34, 1.56, 0.64, 1] }}
-            className="max-w-4xl mx-auto space-y-6"
+            initial="hidden"
+            animate="show"
+            viewport={{ once: true }}
+            variants={{
+              hidden: {},
+              show: { transition: { staggerChildren: 0.15 } }
+            }}
+            className="flex flex-col items-center max-w-5xl mx-auto"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/20 border border-cyan-400/30 backdrop-blur-md text-cyan-300 text-[11px] md:text-[13px] font-bold tracking-[0.2em] relative uppercase mb-2 group cursor-default">
-              <Zap className="w-4 h-4 text-cyan-400" />
-              Our Story
-            </div>
-
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05]">
-              Powering Smart Homes Across <span className="text-cyan-400">Pakistan</span>
-            </h1>
-
-            <p className="text-base md:text-xl text-zinc-300/90 leading-relaxed max-w-2xl mx-auto font-light">
-              At Aqua Electrical, we're passionate about transforming ordinary homes into
-              intelligent living spaces. With over 15 years of experience, we bring you
-              the best in smart home automation.
-            </p>
-
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-              className="flex flex-wrap items-center justify-center gap-4 pt-6"
+              variants={FADE_UP_VARIANTS}
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-zinc-200 shadow-sm text-zinc-600 text-xs font-bold tracking-[0.2em] uppercase mb-8"
             >
-              <Button asChild size="lg" className="bg-cyan-600 hover:bg-cyan-500 text-white rounded-full px-8 h-12 shadow-[0_10px_20px_rgba(8,145,178,0.3)] transition-all">
-                <Link href="/products">
-                  Explore Products <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="bg-white/5 border-white/20 text-white hover:bg-white/10 hover:text-white rounded-full backdrop-blur-sm px-8 h-12 transition-all">
-                <Link href="/contact">
-                  Contact Us
-                </Link>
-              </Button>
+              <Cpu className="w-3.5 h-3.5 text-cyan-600" />
+              Our Origin
+            </motion.div>
+
+            <motion.div variants={FADE_UP_VARIANTS} className="overflow-hidden">
+              <h1 className="text-[clamp(2.5rem,6vw,5.5rem)] font-black tracking-tight text-zinc-900 leading-[0.95] mb-6">
+                Architecting the <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-br from-cyan-600 to-blue-700">Intelligent Home.</span>
+              </h1>
+            </motion.div>
+
+            <motion.div variants={FADE_UP_VARIANTS}>
+              <p className="text-lg md:text-2xl text-zinc-500 leading-relaxed max-w-2xl mx-auto font-medium">
+                At Aqua Smart, we are passionate about transforming static environments into responsive, energy-efficient living ecosystems.
+              </p>
             </motion.div>
           </motion.div>
         </div>
-      </div>
+      </section>
 
-      {/* Our Story Section */}
-      <div className="py-20 bg-[#faf8f5]">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="relative">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-4">
-                  <div className="aspect-4/5 rounded-2xl overflow-hidden bg-muted">
-                    <Image
-                      src="/images/card-bg-one.jpg"
-                      alt="Our journey"
-                      width={300}
-                      height={375}
-                      className="object-cover w-full h-full"
-                    />
+      {/* Origin Story Grid Section */}
+      <section ref={containerRef} className="py-24 relative z-10 bg-white">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+
+            {/* Asymmetric Image Grid */}
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, ease: [0.34, 1.56, 0.64, 1] }}
+              className="relative"
+            >
+              <div className="grid grid-cols-2 gap-4 md:gap-6">
+                <div className="space-y-4 md:space-y-6 translate-y-8">
+                  <div className="aspect-[4/5] rounded-3xl overflow-hidden bg-zinc-100 relative shadow-2xl shadow-cyan-900/5 border border-zinc-100">
+                    <motion.div style={{ y: yImage }} className="absolute inset-[-10%] w-[120%] h-[120%]">
+                      <Image src="/images/card-bg-one.jpg" alt="Our journey" fill className="object-cover" />
+                    </motion.div>
                   </div>
-                  <div className="aspect-square rounded-2xl overflow-hidden bg-muted">
-                    <Image
-                      src="/images/product-one.png"
-                      alt="Our team"
-                      width={300}
-                      height={300}
-                      className="object-cover w-full h-full"
-                    />
+                  <div className="aspect-square rounded-3xl overflow-hidden bg-zinc-100 relative shadow-lg shadow-zinc-200/50 border border-zinc-100">
+                    <Image src="/images/card-bg-three.jpg" alt="Technology" fill className="object-cover" />
                   </div>
                 </div>
-                <div className="pt-8 space-y-4">
-                  <div className="aspect-square rounded-2xl overflow-hidden bg-muted">
-                    <Image
-                      src="/images/card-bg-three.jpg"
-                      alt="Our products"
-                      width={300}
-                      height={300}
-                      className="object-cover w-full h-full"
-                    />
+                <div className="space-y-4 md:space-y-6">
+                  <div className="aspect-square rounded-3xl overflow-hidden bg-zinc-100 relative shadow-lg shadow-zinc-200/50 border border-zinc-100">
+                    <Image src="/images/product-one.png" alt="Products" fill className="object-cover p-4" />
                   </div>
-                  <div className="aspect-4/5 rounded-2xl overflow-hidden bg-muted">
-                    <Image
-                      src="/images/card-bg-two.jpg"
-                      alt="Our showroom"
-                      width={300}
-                      height={375}
-                      className="object-cover w-full h-full"
-                    />
+                  <div className="aspect-[4/5] rounded-3xl overflow-hidden bg-zinc-100 relative shadow-2xl shadow-cyan-900/5 border border-zinc-100">
+                    <motion.div style={{ y: yImage }} className="absolute inset-[-10%] w-[120%] h-[120%]">
+                      <Image src="/images/card-bg-two.jpg" alt="Showroom" fill className="object-cover" />
+                    </motion.div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="space-y-6">
-              <Badge className="bg-[#e81e32]/10 text-[#e81e32] hover:bg-[#e81e32]/20 border-0">
-                Our Story
-              </Badge>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-                From a Small Shop to Pakistan's Leading Smart Home Provider
+            </motion.div>
+
+            {/* Story Content */}
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, delay: 0.2, ease: [0.34, 1.56, 0.64, 1] }}
+              className="space-y-8"
+            >
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-50 border border-cyan-100 text-cyan-700 text-xs font-bold uppercase tracking-widest">
+                The Journey
+              </div>
+              <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-bold text-zinc-900 tracking-tight leading-[1.05]">
+                From a single shop to a <span className="text-zinc-400">national network.</span>
               </h2>
-              <div className="space-y-4 text-foreground/70 leading-relaxed">
+
+              <div className="space-y-6 text-zinc-600 text-lg leading-relaxed">
                 <p>
-                  Aqua Electrical began in 2009 as a humble electrical supply store in Karachi.
-                  Our founder, Ahmed Khan, had a vision: to bring modern electrical solutions
-                  to every Pakistani home.
+                  We began over a decade ago with a simple realization: homes were drawing power, but they weren't utilizing it intelligently. What started as an electrical supply operation evolved radically as we recognized the potential of interconnected ecosystems.
                 </p>
                 <p>
-                  Over the years, we've grown from a single shop to a nationwide network,
-                  embracing smart home technology along the way. Today, we're proud to be
-                  Pakistan's most trusted name in home automation.
-                </p>
-                <p>
-                  Our journey has been driven by one simple belief — that everyone deserves
-                  a home that's safe, efficient, and intelligently connected.
+                  Today, Aqua Smart stands as a pioneer in home automation. We don't just sell devices—we engineer ambient environments that adapt to your behavioral patterns in real-time.
                 </p>
               </div>
-              <div className="flex flex-wrap gap-4 pt-4">
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="h-5 w-5 text-[#e81e32]" />
-                  <span className="font-medium">Certified Products</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="h-5 w-5 text-[#e81e32]" />
-                  <span className="font-medium">Expert Installation</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="h-5 w-5 text-[#e81e32]" />
-                  <span className="font-medium">24/7 Support</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      {/* CTA Section */}
-      <div className="py-20 bg-gray-900">
-        <div className="container mx-auto px-4 text-center">
-          <div className="max-w-3xl mx-auto space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-white">
-              Ready to Transform Your Home?
-            </h2>
-            <p className="text-white/80 text-lg">
-              Join thousands of satisfied customers who have made their homes smarter with Aqua Electrical.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4 pt-4">
-              <Button asChild size="lg" variant="secondary" className="bg-white text-gray-900 hover:bg-white/90">
-                <Link href="/products">
-                  Shop Now
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="border-white text-gray-900 hover:bg-white/90">
-                <Link href="/contact">
-                  Get in Touch
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Values Section */}
-      <div className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <Badge className="bg-[#e81e32]/10 text-[#e81e32] hover:bg-[#e81e32]/20 border-0 mb-4">
-              Our Values
-            </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              What We Stand For
-            </h2>
-            <p className="text-foreground/70">
-              Our core values guide everything we do, from product selection to customer service.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {values.map((value, index) => (
-              <Card
-                key={index}
-                className="group border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-              >
-                <CardHeader>
-                  <div className="w-14 h-14 rounded-2xl bg-[#e81e32]/10 flex items-center justify-center mb-4 group-hover:bg-[#e81e32] transition-colors duration-300">
-                    <value.icon className="h-7 w-7 text-[#e81e32] group-hover:text-white transition-colors duration-300" />
+              <div className="flex flex-wrap gap-6 pt-6 border-t border-zinc-100 pt-8">
+                {[
+                  { label: "Military-Grade Testing", icon: Shield },
+                  { label: "Certified Nodes", icon: Network },
+                  { label: "24/7 Diagnostics", icon: Activity }
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-zinc-50 border border-zinc-200 flex items-center justify-center">
+                      <item.icon className="w-4 h-4 text-zinc-900" />
+                    </div>
+                    <span className="font-semibold text-zinc-800">{item.label}</span>
                   </div>
-                  <CardTitle className="text-xl">{value.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-foreground/70">{value.description}</p>
-                </CardContent>
-              </Card>
+                ))}
+              </div>
+            </motion.div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* Values Bento Grid */}
+      <section className="py-24 bg-zinc-50">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold text-zinc-900 mb-6 tracking-tight">
+              Our Core Architecture.
+            </h2>
+            <p className="text-zinc-500 text-lg">
+              The fundamental principles that dictate how we design, build, and support the Aqua Smart ecosystem.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {values.map((value, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.1, ease: [0.34, 1.56, 0.64, 1] }}
+                className="group relative bg-white p-8 rounded-[2rem] border border-zinc-200/60 shadow-sm hover:shadow-2xl hover:shadow-cyan-900/5 hover:-translate-y-1 transition-all duration-500 overflow-hidden"
+              >
+                {/* Subtle Hover Gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-cyan-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+                <div className="relative z-10">
+                  <div className="w-14 h-14 rounded-2xl bg-zinc-50 border border-zinc-100 flex items-center justify-center mb-6 group-hover:bg-cyan-50 group-hover:border-cyan-100 transition-colors duration-500">
+                    <value.icon className="h-6 w-6 text-zinc-400 group-hover:text-cyan-600 transition-colors duration-500" />
+                  </div>
+                  <h3 className="text-xl font-bold text-zinc-900 mb-3">{value.title}</h3>
+                  <p className="text-zinc-500 leading-relaxed text-sm">
+                    {value.description}
+                  </p>
+                </div>
+              </motion.div>
             ))}
           </div>
         </div>
-      </div>
+      </section>
 
+      {/* The Team Component */}
       <OurTeam />
 
+      {/* CTA Wrap-up */}
+      <section className="py-24 bg-white border-t border-zinc-100">
+        <div className="container mx-auto px-4 max-w-4xl text-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: [0.34, 1.56, 0.64, 1] }}
+            className="bg-zinc-900 rounded-[3rem] p-12 md:p-20 relative overflow-hidden shadow-2xl"
+          >
+            {/* Glows */}
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-cyan-500/20 blur-[100px] rounded-full mix-blend-screen pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-500/20 blur-[100px] rounded-full mix-blend-screen pointer-events-none" />
 
+            <div className="relative z-10 space-y-8">
+              <h2 className="text-[clamp(2rem,5vw,4rem)] font-bold text-white tracking-tight leading-none">
+                Ready to elevate <br /> your environment?
+              </h2>
+              <p className="text-zinc-400 text-lg max-w-xl mx-auto">
+                Join the vanguard of homeowners experiencing unparalleled control, efficiency, and continuous peace of mind.
+              </p>
+              <div className="flex justify-center gap-4 pt-4">
+                <Button asChild size="lg" className="bg-white text-zinc-900 hover:bg-zinc-100 rounded-full px-8 h-14 font-semibold">
+                  <Link href="/products">
+                    Explore Ecosystem
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
-
-    </section>
+    </div>
   )
 }

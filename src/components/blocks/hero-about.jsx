@@ -19,16 +19,12 @@ const HeroAbout = () => {
 
     return (
         <section ref={sectionRef} className='relative z-20 flex h-[60svh] md:h-[70svh] w-full flex-col items-center justify-center overflow-hidden pb-20'>
-            {/* Ambient Background Glow matching dark theme */}
-            <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
-                <div className="h-64 w-64 md:h-96 md:w-96 rounded-full bg-cyan-900/10 blur-[100px]" />
-            </div>
-
+            
             <motion.div
                 style={{ opacity, scale, y: yTransform }}
-                className='z-20 flex max-w-4xl flex-col items-center justify-center space-y-10 text-center px-4 mix-blend-plus-lighter sticky top-[20vh] pt-50'
+                className='z-20 flex max-w-4xl flex-col items-center justify-center space-y-10 text-center px-4 sticky top-[20vh] pt-50 will-change-transform transform-gpu'
             >
-                <h2 className="bg-linear-to-b from-slate-900 to-slate-400 bg-clip-text text-[clamp(4rem,10vw,10rem)] font-bold leading-none tracking-tight text-transparent drop-shadow-sm">
+                <h2 className="bg-linear-to-b from-slate-900 to-slate-400 bg-clip-text text-[clamp(4rem,10vw,10rem)] font-bold leading-none tracking-tight text-transparent">
                     About Us
                 </h2>
 

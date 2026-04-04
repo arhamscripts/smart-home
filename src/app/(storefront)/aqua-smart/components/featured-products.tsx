@@ -7,42 +7,42 @@ import Link from 'next/link';
 const AQUA_PRODUCTS = [
   {
     id: 101,
-    name: 'Aqua Smart Sprinkler Pro',
+    name: 'Aqua Smart Energy Hub',
     isNew: true,
-    slug: 'aqua-smart-sprinkler-pro',
+    slug: 'aqua-smart-energy-hub',
     price: 249.99,
     rating: 4.9,
-    description: 'On-board Flow Monitor & device control. IoT, Alexa & Google home enabled. Weather-based Auto ON/OFF using application.',
+    description: 'On-board Power Monitor & device control. IoT, Alexa & Google home enabled. Behavior-based Auto ON/OFF using application.',
     image: 'https://images.unsplash.com/photo-1558089687-f282ffcbc126?auto=format&fit=crop&q=80&w=800&h=800'
   },
   {
     id: 102,
-    name: 'Aqua Leak Detector Ambient',
+    name: 'Aqua Smart Load Balancer',
     isNew: true,
-    slug: 'aqua-leak-detector-ambient',
+    slug: 'aqua-smart-load-balancer',
     price: 79.99,
     rating: 4.8,
-    description: 'On-board moisture sensing tech. IoT, Alexa & Google home enabled. Instant notification & Valve shutoff using app.',
+    description: 'Active load sensing tech. IoT, Alexa & Google home enabled. Instant notification & Circuit shutoff using app.',
     image: 'https://images.unsplash.com/photo-1558089687-f282ffcbc126?auto=format&fit=crop&q=80&w=800&h=800'
   },
   {
     id: 103,
-    name: 'ValvGuard 400 Main Hub',
+    name: 'VoltGuard 400 Main Panel',
     isNew: false,
-    slug: 'valvguard-400-main-hub',
+    slug: 'voltguard-400-main-panel',
     price: 199.99,
     rating: 4.7,
-    description: 'SpaceTech Flow Purification Technology. Portable AQI Remote for realtime water quality monitoring. IoT, Alexa & Google home enabled.',
+    description: 'SpaceTech Power Regulation Technology. Portable Hub for real-time energy quality monitoring. IoT, Alexa & Google home enabled.',
     image: 'https://images.unsplash.com/photo-1558089687-f282ffcbc126?auto=format&fit=crop&q=80&w=800&h=800'
   },
   {
     id: 104,
-    name: 'Aqua Smart Faucet Base',
+    name: 'Aqua Smart Node Base',
     isNew: false,
-    slug: 'aqua-smart-faucet-base',
+    slug: 'aqua-smart-node-base',
     price: 129.99,
     rating: 4.9,
-    description: 'SpaceTech Flow Delivery Technology with TiO2 module. Portable Normal Remote for realtime flow monitoring. IoT, Alexa & Google home enabled.',
+    description: 'SpaceTech Energy Delivery Technology with AI module. Portable Remote for real-time power monitoring. IoT, Alexa & Google home enabled.',
     image: 'https://images.unsplash.com/photo-1558089687-f282ffcbc126?auto=format&fit=crop&q=80&w=800&h=800'
   }
 ];

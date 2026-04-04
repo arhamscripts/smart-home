@@ -7,7 +7,7 @@ import { PlayCircle } from 'lucide-react';
 export default function VideoBanner() {
     return (
         <section className="relative w-full py-40 overflow-hidden bg-[#1a2024]">
-            {/* Ethereal Abstract Background / Flow rendering */}
+            {/* Ethereal Abstract Background / Energy rendering */}
             <div className="absolute bottom-0 inset-x-0 opacity-50 pointer-events-none mix-blend-screen scale-125">
                 <video src="/videos/aqua-smart-video.mp4" autoPlay loop muted className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1a1e24] via-transparent to-[#1a1f24]" />
@@ -22,7 +22,7 @@ export default function VideoBanner() {
                     className="max-w-2xl"
                 >
                     <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
-                        Pure. Intelligent. Flowing.
+                        Smart. Intelligent. Powerful.
                     </h2>
 
                     <p className="text-zinc-300 text-sm md:text-base font-medium mb-8">

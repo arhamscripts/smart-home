@@ -45,11 +45,6 @@ const items = [
         icon: Info,
     },
     {
-        title: "Products",
-        url: "/products",
-        icon: ShoppingBag,
-    },
-    {
         title: "Contact",
         url: "/contact",
         icon: Phone,
