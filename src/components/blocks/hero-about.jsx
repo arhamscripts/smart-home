@@ -19,7 +19,7 @@ const HeroAbout = () => {
 
     return (
         <section ref={sectionRef} className='relative z-20 flex h-[60svh] md:h-[70svh] w-full flex-col items-center justify-center overflow-hidden pb-20'>
-            
+
             <motion.div
                 style={{ opacity, scale, y: yTransform }}
                 className='z-20 flex max-w-4xl flex-col items-center justify-center space-y-10 text-center px-4 sticky top-[20vh] pt-50 will-change-transform transform-gpu'

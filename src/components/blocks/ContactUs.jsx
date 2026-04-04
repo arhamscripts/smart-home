@@ -21,8 +21,8 @@ const CONTACT_METHODS = [
     { icon: MessageCircle, title: "WhatsApp Support", detail: "+9211773333", colSpan: "col-span-1" },
     { icon: Headset, title: "Online Service Request", detail: "Get in Touch", colSpan: "col-span-1" },
     { icon: PhoneCall, title: "Customer Care No.", detail: "021045771313", colSpan: "col-span-1" },
-    { icon: Mail, title: "Email Support", detail: "customercare@aquasmart.com", colSpan: "col-span-2" },
-    { icon: FileText, title: "Legal Queries", detail: "legal@aquasmart.com", subtext: "Admin Aqua", colSpan: "md:col-span-1 lg:col-span-1" },
+    { icon: Mail, title: "Email Support", detail: "customercare@aquasmart.com", colSpan: "col-span-1 md:col-span-2 lg:col-span-1" },
+    { icon: FileText, title: "Legal Queries", detail: "legal@aquasmart.com", subtext: "Admin Aqua", colSpan: "col-span-1 md:col-span-1 lg:col-span-1" },
 ];
 
 const OFFICE_LOCATIONS = [
@@ -98,7 +98,7 @@ export default function ContactUs() {
                     <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-40"></div>
                 </div>
 
-                <div className="container mx-auto px-4 relative z-10 pt-8 pb-32 md:pb-60">
+                <div className="container mx-auto px-4 relative z-10 pt-8 pb-20 md:pb-40">
 
                     <div className="flex flex-col md:flex-row items-center justify-between mb-8 h-full">
 
@@ -106,7 +106,7 @@ export default function ContactUs() {
                             initial={{ opacity: 0, x: -40 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.8, ease: [0.34, 1.56, 0.64, 1] }}
-                            className="w-full relative h-[350px] md:h-[450px] flex items-end justify-center z-20"
+                            className="w-full relative h-[300px] md:h-[450px] flex items-end justify-center z-20"
                         >
                             {/* Image Placeholder representing the Woman with Headset */}
                             <div className="absolute bottom-0 w-full h-[95%] bg-transparent drop-shadow-2xl flex items-end justify-center">
@@ -116,41 +116,41 @@ export default function ContactUs() {
                                     className="w-full h-full object-cover object-top mask-image-bottom mask-[linear-gradient(to_top,transparent_0%,black_10%)]"
                                     style={{ borderRadius: '50% 50% 0 0 / 20% 20% 0 0' }}
                                 />
-                                <h1 className='absolute -bottom-20 flex items-center justify-center text-6xl font-bold'>Contact us</h1>
+                                <h1 className='absolute -bottom-16 md:-bottom-20 flex items-center justify-center text-4xl sm:text-5xl md:text-6xl font-bold'>Contact us</h1>
                             </div>
                         </motion.div>
-
-                        {/* Added a subtle brand tag if needed, otherwise kept minimal and clean as photo */}
                     </div>
-
-                    {/* Quick Contact Badges row overlapping the bottom */}
-                    <motion.div
-                        variants={staggerContainer}
-                        initial="hidden"
-                        animate="show"
-                        className="flex flex-wrap justify-center md:justify-around items-end gap-x-2 gap-y-8 absolute -bottom-10 left-4 right-4 md:left-8 md:right-8 bg-white md:bg-white/90 md:backdrop-blur-xl rounded-2xl md:rounded-[2rem] py-6 md:py-8 mb-5 shadow-2xl shadow-cyan-900/10 border border-white z-30"
-                    >
-                        {[
-                            { icon: PhoneCall, label: "Customer Care No.", val: "+923045771313" },
-                            { icon: MessageCircle, label: "WhatsApp Support", val: "+923045771313" },
-                            { icon: Mail, label: "Email ID", val: "customercare@aquasmart.com" },
-                            { icon: FileText, label: "Legal Queries", val: "legal@aquasmart.com" },
-                            { icon: Smartphone, label: "Mobile App", val: "Aqua Smart App" }
-                        ].map((b, i) => (
-                            <motion.div key={i} variants={itemAnim} className="flex flex-col items-center w-40 text-center group cursor-pointer">
-                                <div className="w-16 h-16 rounded-full bg-cyan-600 text-white flex items-center justify-center mb-3 group-hover:-translate-y-2 group-hover:shadow-[0_10px_20px_rgba(8,145,178,0.4)] transition-all duration-300">
-                                    <b.icon className="w-7 h-7" />
-                                </div>
-                                <h4 className="text-[11px] font-bold text-zinc-900 uppercase tracking-wide leading-tight mb-1">{b.label}</h4>
-                                <p className="text-[13px] font-black text-zinc-800 group-hover:text-cyan-600 transition-colors">{b.val}</p>
-                            </motion.div>
-                        ))}
-                    </motion.div>
                 </div>
             </section>
 
+            {/* Quick Contact Badges row intersecting the bottom */}
+            <div className="relative z-30 container mx-auto px-2 sm:px-4 -mt-16 md:-mt-24 mb-12">
+                <motion.div
+                    variants={staggerContainer}
+                    initial="hidden"
+                    animate="show"
+                    className="flex flex-wrap justify-center md:justify-around items-start gap-x-2 gap-y-6 md:gap-y-8 bg-white md:bg-white/90 md:backdrop-blur-xl rounded-2xl md:rounded-[2rem] py-8 md:py-10 px-2 sm:px-4 shadow-2xl shadow-cyan-900/10 border border-white"
+                >
+                    {[
+                        { icon: PhoneCall, label: "Customer Care", val: "+923045771313" },
+                        { icon: MessageCircle, label: "WhatsApp", val: "+923045771313" },
+                        { icon: Mail, label: "Email ID", val: "care@aquasmart.com" },
+                        { icon: FileText, label: "Legal", val: "legal@aquasmart.com" },
+                        { icon: Smartphone, label: "Mobile App", val: "Aqua Smart App" }
+                    ].map((b, i) => (
+                        <motion.div key={i} variants={itemAnim} className="flex flex-col items-center w-[45%] sm:w-36 md:w-40 text-center group cursor-pointer">
+                            <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-cyan-600 text-white flex items-center justify-center mb-2 md:mb-3 group-hover:-translate-y-1 md:group-hover:-translate-y-2 group-hover:shadow-[0_10px_20px_rgba(8,145,178,0.4)] transition-all duration-300">
+                                <b.icon className="w-5 h-5 md:w-7 md:h-7" />
+                            </div>
+                            <h4 className="text-[10px] md:text-[11px] font-bold text-zinc-900 uppercase tracking-wide leading-tight mb-1">{b.label}</h4>
+                            <p className="text-[11px] md:text-[13px] font-black text-zinc-800 group-hover:text-cyan-600 transition-colors truncate w-full px-1">{b.val}</p>
+                        </motion.div>
+                    ))}
+                </motion.div>
+            </div>
+
             {/* 2. CONTACT US CARDS GRID */}
-            <section className="container mx-auto px-4 pt-28 md:pt-36">
+            <section className="container mx-auto px-4 pt-8 md:pt-16">
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 container mx-auto">
                     {CONTACT_METHODS.map((method, i) => (

@@ -17,18 +17,16 @@ const page = () => {
       <Header />
       <ImmersiveSlider />
       <section className='relative overflow-visible'>
-        <FlickeringGrid
-          className="absolute inset-0 z-0 mask-[radial-gradient(450px_circle_at_center,white,transparent)]"
-          squareSize={10}
-          gridGap={6}
-          color="#60A5FA"
-          maxOpacity={0.5}
-          flickerChance={0.1}
-        />
-        <div className="relative z-10 px-4 pb-4 ">
+          <FlickeringGrid
+            className="absolute inset-0 z-0 mask-[radial-gradient(450px_circle_at_center,white,transparent)]"
+            squareSize={10}
+            gridGap={6}
+            color="#60A5FA"
+            maxOpacity={0.5}
+            flickerChance={0.1}
+          />
           <HeroAbout />
           <StayInspiredCards />
-        </div>
       </section>
       <Global />
       <section className='relative overflow-visible bg-slate-950 text-white'>

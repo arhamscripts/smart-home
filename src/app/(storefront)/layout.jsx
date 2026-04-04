@@ -3,7 +3,7 @@ import { AppSidebar } from "@/components/blocks/sidebar";
 
 export default function StorefrontLayout({ children }) {
   return (
-    <SidebarProvider open={false}>
+    <SidebarProvider>
       <section className="w-full">
         <AppSidebar />
         <main>{children}</main>

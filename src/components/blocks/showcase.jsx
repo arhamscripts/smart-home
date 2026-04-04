@@ -168,7 +168,7 @@ const Showcase = () => {
                             />
 
                             {/* Light Image */}
-                            <div className="absolute left-0 max-lg:left-[5%] xl:left-[10%] top-1/2 -translate-y-1/2 z-10 pointer-events-none">
+                            <div className="absolute left-0 max-lg:left-[1%] xl:left-[10%] top-1/2 -translate-y-1/2 z-10 pointer-events-none">
                                 <div className="relative w-65 sm:w-60 lg:w-[400px]">
                                     <img
                                         src="images/showcase-image.png"
@@ -255,13 +255,13 @@ const Showcase = () => {
                         className={`w-full h-full lg:flex-1 flex justify-center items-start showcase-reveal showcase-reveal--card ${demoCardInView ? 'is-visible' : ''}`}
                         style={{ transitionDelay: '0.3s' }}
                     >
-                        <div className="demo-frame-wrapper h-200 sm:h-200 lg:h-190 max-w-full overflow-hidden flex flex-col justify-center items-center">
-                            <Android className="h-full w-auto max-w-full shrink-0">
+                        <div className="demo-frame-wrapper h-190 sm:h-200 lg:h-190 max-w-full overflow-hidden flex flex-col justify-center items-center">
+                            <Android className="h-full w-auto max-w-full shrink-0 overslow-hidden">
                                 <iframe
                                     id="HAdemo"
                                     title="Home Assistant Demo"
                                     src="https://demo.home-assistant.io/?frontpage"
-                                    className="block h-full w-full border-0"
+                                    className="block h-[calc(100%-5rem)] w-full border-0 rounded-2xl"
                                     loading="lazy"
                                 />
                             </Android>
