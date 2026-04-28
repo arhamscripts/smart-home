@@ -117,7 +117,7 @@ export default function ImmersiveSlider() {
                 size="lg"
                 className="group rounded-full bg-slate-50 px-6 py-5 sm:px-8 sm:py-6 md:px-10 md:py-7 text-sm sm:text-base md:text-lg font-bold text-slate-950 transition-colors hover:bg-slate-200 cursor-pointer"
               >
-                <Link href="/category" className="flex items-center gap-3">
+                <Link href="/aqua-electrical" className="flex items-center gap-3">
                   <span>Explore Products</span>
                   <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                 </Link>

@@ -40,6 +40,7 @@ export default function FloatingShapes({ variant = "section", className = "" }) 
             bottom: s.bottom,
             width: s.size,
             height: s.size,
+            willChange: "transform",
             animation: isReduced
               ? "none"
               : `${s.animation} ${s.duration}s ease-in-out ${s.delay}s infinite`,

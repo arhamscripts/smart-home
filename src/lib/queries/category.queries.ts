@@ -87,7 +87,7 @@ export async function getCategoryBySlug(slug: string): Promise<Category | null> 
     .from(categories)
     .where(and(eq(categories.slug, slug), eq(categories.isActive, true)))
     .limit(1);
-  return result[0] ?? null;
+  return (result[0] as unknown as Category) ?? null;
 }
 
 /**
@@ -130,7 +130,7 @@ export async function isLeafCategory(categoryId: string): Promise<boolean> {
  * Get all active leaf categories (categories with no children).
  */
 export async function getLeafCategories(): Promise<Category[]> {
-  return db
+  const rows = await db
     .select()
     .from(categories)
     .where(
@@ -141,6 +141,19 @@ export async function getLeafCategories(): Promise<Category[]> {
         )`
       )
     );
+  return rows as unknown as Category[];
+}
+
+/**
+ * Get direct child categories of a parent category.
+ */
+export async function getChildCategories(parentId: string): Promise<Category[]> {
+  const rows = await db
+    .select()
+    .from(categories)
+    .where(and(eq(categories.parentId, parentId), eq(categories.isActive, true)))
+    .orderBy(categories.sortOrder);
+  return rows as unknown as Category[];
 }
 
 /**

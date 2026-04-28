@@ -167,8 +167,14 @@ export default function BrandStory() {
             </div>
 
             {/* Decorative orb */}
-            <div className="absolute -right-10 top-1/3 h-48 w-48 rounded-full bg-primary/30 blur-3xl" />
-            <div className="absolute -left-10 bottom-10 h-40 w-40 rounded-full bg-accent/25 blur-3xl" />
+        <div 
+          className="absolute -right-10 top-1/3 h-64 w-64 rounded-full opacity-30" 
+          style={{ backgroundImage: "radial-gradient(circle at center, var(--color-primary) 0%, transparent 70%)" }}
+        />
+        <div 
+          className="absolute -left-10 bottom-10 h-56 w-56 rounded-full opacity-25" 
+          style={{ backgroundImage: "radial-gradient(circle at center, var(--color-accent) 0%, transparent 70%)" }}
+        />
           </motion.div>
         </div>
       </div>

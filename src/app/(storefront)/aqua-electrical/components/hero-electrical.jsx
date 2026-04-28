@@ -121,7 +121,7 @@ export default function HeroElectrical() {
               className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:flex-wrap lg:justify-start"
             >
               <Link
-                href="/category"
+                href="/aqua-electrical"
                 className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-accent px-6 py-3 text-sm font-semibold text-background shadow-[0_10px_40px_-12px_var(--color-accent)] transition-transform hover:scale-[1.02] sm:w-auto"
               >
                 <Zap className="h-4 w-4" />

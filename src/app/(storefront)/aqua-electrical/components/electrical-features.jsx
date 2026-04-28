@@ -127,7 +127,7 @@ export default function ElectricalFeatures() {
               className="mt-10 flex flex-wrap items-center gap-4"
             >
               <Link
-                href="/category"
+                href="/aqua-electrical"
                 className="group inline-flex items-center gap-2 rounded-full bg-accent px-5 py-3 text-sm font-semibold text-background shadow-[0_10px_30px_-10px_var(--color-accent)] transition-transform hover:scale-[1.02]"
               >
                 Browse all products

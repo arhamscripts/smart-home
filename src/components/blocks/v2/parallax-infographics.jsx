@@ -60,14 +60,17 @@ export default function ParallaxInfographics() {
     >
       {/* Background Parallax Element */}
       <motion.div 
-        style={{ y: yBg }}
+        style={{ y: yBg, willChange: "transform" }}
         className="pointer-events-none absolute inset-0 opacity-[0.03]"
       >
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:120px_120px]" />
       </motion.div>
 
       {/* Glow */}
-      <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[600px] w-[600px] rounded-full bg-blue-500/5 blur-[120px]" />
+      <div 
+        className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[800px] w-[800px] rounded-full opacity-[0.12]"
+        style={{ backgroundImage: "radial-gradient(circle at center, rgb(59 130 246) 0%, transparent 60%)" }}
+      />
 
       <div className="container relative z-10 mx-auto px-4 md:px-8">
         
@@ -105,14 +108,14 @@ export default function ParallaxInfographics() {
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-8 items-center">
           
           {/* Left Data Column */}
-          <motion.div style={{ y: yGrid1 }} className="flex flex-col gap-6 lg:col-span-3">
+          <motion.div style={{ y: yGrid1, willChange: "transform" }} className="flex flex-col gap-6 lg:col-span-3">
             <InfographicCard icon={Activity} value="99.9%" label="Uptime Guarantee" delay={0.1} />
             <InfographicCard icon={Zap} value="40%" label="Energy Savings" delay={0.2} />
           </motion.div>
 
           {/* Center Globe Parallax */}
           <motion.div 
-            style={{ y: yGlobe }}
+            style={{ y: yGlobe, willChange: "transform" }}
             className="relative flex items-center justify-center lg:col-span-6"
           >
                {/* <CobeGlobe size={600} className="absolute -rotate-[10deg] opacity-90 mix-blend-screen" /> */}
@@ -120,7 +123,7 @@ export default function ParallaxInfographics() {
           </motion.div>
 
           {/* Right Data Column */}
-          <motion.div style={{ y: yGrid2 }} className="flex flex-col gap-6 lg:col-span-3">
+          <motion.div style={{ y: yGrid2, willChange: "transform" }} className="flex flex-col gap-6 lg:col-span-3">
             <InfographicCard icon={Shield} value="256-bit" label="Encryption Standard" delay={0.3} />
             <InfographicCard icon={Cpu} value="12M+" label="Automations Hourly" delay={0.4} />
           </motion.div>

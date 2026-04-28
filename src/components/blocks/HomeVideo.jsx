@@ -181,7 +181,7 @@ export default function HomeVideo() {
         const shift = (progress - midpoint) * 80;
 
         el.style.opacity = opacity;
-        el.style.transform = `translateY(${shift}px)`;
+        el.style.transform = `translate3d(0, ${shift}px, 0)`;
         el.style.pointerEvents = opacity > 0.5 ? "auto" : "none";
       });
     };

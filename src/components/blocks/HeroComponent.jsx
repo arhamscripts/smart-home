@@ -102,7 +102,7 @@ export default function HeroComponent() {
               size="lg"
               className="group relative overflow-hidden rounded-full w-full bg-slate-50 text-slate-950 font-semibold shadow-[0_0_40px_-10px_rgba(34,211,238,0.4)] hover:shadow-[0_0_60px_-15px_rgba(34,211,238,0.6)] transition-all duration-500 sm:w-auto px-8 py-6 text-base"
             >
-              <Link href="/category">
+              <Link href="/aqua-electrical">
                 <span className="relative z-10">Explore Products</span>
                 <div className="absolute inset-0 z-0 h-full w-full bg-linear-to-r from-cyan-300 to-blue-400 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
               </Link>

@@ -2,57 +2,69 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowUpRight, ShoppingCart, Star, Zap } from "lucide-react";
+import { ArrowUpRight, ShoppingCart, Zap, Package } from "lucide-react";
 
-const ELECTRICAL_PRODUCTS = [
+const FALLBACK_PRODUCTS = [
   {
-    id: 1,
+    id: "1",
     name: "Aqua Bravo 2-Gang Switch",
     series: "Bravo Series",
     slug: "aqua-bravo-2-gang-switch",
     price: 850,
-    rating: 4.8,
     badge: "Best Seller",
     specs: ["10A", "250V", "British Std"],
     image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=800",
   },
   {
-    id: 2,
+    id: "2",
     name: "Glasskin 4-Gang Panel",
     series: "Glasskin Series",
     slug: "glasskin-4-gang-panel",
     price: 2200,
-    rating: 4.9,
     badge: "New",
     specs: ["15A", "250V", "Tempered Glass"],
     image: "https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&q=80&w=800",
   },
   {
-    id: 3,
+    id: "3",
     name: "MCB Triple Pole 32A",
     series: "Circuit Protection",
     slug: "mcb-triple-pole-32a",
     price: 1650,
-    rating: 4.7,
     badge: null,
     specs: ["32A", "3-Pole", "10kA"],
     image: "https://images.unsplash.com/photo-1601233891960-c85f8c7adf29?auto=format&fit=crop&q=80&w=800",
   },
   {
-    id: 4,
+    id: "4",
     name: "Roman 6-Gang Switch Panel",
     series: "Roman Series",
     slug: "roman-6-gang-panel",
     price: 3200,
-    rating: 4.8,
     badge: "New",
     specs: ["10A", "250V", "146×86mm"],
     image: "https://images.unsplash.com/photo-1585771724684-38269d6639fd?auto=format&fit=crop&q=80&w=800",
   },
 ];
 
-export default function ElectricalProducts() {
+function normalizeProducts(dbProducts) {
+  if (!dbProducts || dbProducts.length === 0) return FALLBACK_PRODUCTS;
+  return dbProducts.map((p) => ({
+    id: p.id,
+    name: p.name,
+    series: p.category?.name ?? p.brand?.name ?? "Electrical Series",
+    slug: p.slug,
+    price: Number(p.price),
+    badge: p.isFeatured ? "Featured" : null,
+    specs: (p.productAttributes ?? []).slice(0, 3).map((a) => a.value),
+    image: p.thumbnailUrl ?? null,
+  }));
+}
+
+export default function ElectricalProducts({ products: dbProducts }) {
+  const products = normalizeProducts(dbProducts);
   return (
     <section className="relative isolate overflow-hidden bg-background py-20 sm:py-28">
       <div
@@ -90,7 +102,7 @@ export default function ElectricalProducts() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <Link
-              href="/category"
+              href="/aqua-electrical"
               className="group inline-flex items-center gap-2 text-sm font-medium text-foreground/60 transition-colors hover:text-foreground"
             >
               View all products
@@ -100,7 +112,7 @@ export default function ElectricalProducts() {
         </div>
 
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {ELECTRICAL_PRODUCTS.map((product, i) => (
+          {products.map((product, i) => (
             <ProductCard key={product.id} product={product} index={i} />
           ))}
         </div>
@@ -110,7 +122,7 @@ export default function ElectricalProducts() {
 }
 
 function ProductCard({ product, index }) {
-  const { name, series, slug, price, rating, badge, specs, image } = product;
+  const { name, series, slug, price, badge, specs, image } = product;
 
   return (
     <motion.div
@@ -121,12 +133,19 @@ function ProductCard({ product, index }) {
       className="group relative flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-card/70 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-accent/30 hover:bg-card hover:shadow-2xl"
     >
       {/* Image */}
-      <div className="relative aspect-[4/3] overflow-hidden">
-        <img
-          src={image}
-          alt={name}
-          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-        />
+      <div className="relative aspect-[4/3] overflow-hidden bg-white/[0.03]">
+        {image ? (
+          <Image
+            src={image}
+            alt={name}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+        ) : (
+          <div className="flex h-full items-center justify-center">
+            <Package className="h-10 w-10 text-foreground/20" />
+          </div>
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/10 to-transparent" />
 
         {badge && (
@@ -146,7 +165,7 @@ function ProductCard({ product, index }) {
 
       {/* Content */}
       <div className="flex flex-1 flex-col p-4">
-        <p className="text-[11px] uppercase tracking-[0.18em] text-foreground/40">{series}</p>
+        {series && <p className="text-[11px] uppercase tracking-[0.18em] text-foreground/40">{series}</p>}
 
         <Link href={`/product/${slug}`}>
           <h3 className="mt-1 text-sm font-semibold text-foreground transition-colors group-hover:text-accent line-clamp-2">
@@ -154,23 +173,20 @@ function ProductCard({ product, index }) {
           </h3>
         </Link>
 
-        <div className="mt-2 flex items-center gap-1">
-          <Star className="h-3 w-3 fill-accent text-accent" />
-          <span className="text-xs text-foreground/60">{rating}</span>
-        </div>
-
         {/* Spec tags */}
-        <div className="mt-3 flex flex-wrap gap-1.5">
-          {specs.map((s) => (
-            <span
-              key={s}
-              className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.03] px-2 py-0.5 text-[10px] text-foreground/55"
-            >
-              <Zap className="h-2.5 w-2.5" />
-              {s}
-            </span>
-          ))}
-        </div>
+        {specs.length > 0 && (
+          <div className="mt-3 flex flex-wrap gap-1.5">
+            {specs.map((s) => (
+              <span
+                key={s}
+                className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.03] px-2 py-0.5 text-[10px] text-foreground/55"
+              >
+                <Zap className="h-2.5 w-2.5" />
+                {s}
+              </span>
+            ))}
+          </div>
+        )}
 
         <div className="mt-4 border-t border-white/5 pt-4">
           <span className="text-base font-bold text-foreground">

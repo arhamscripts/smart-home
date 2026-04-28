@@ -110,8 +110,11 @@ function FeatureCard({ feature, index }) {
       transition={{ duration: 0.65, delay: index * 0.07, ease: [0.16, 1, 0.3, 1] }}
       className="group relative h-full overflow-hidden rounded-2xl border border-white/10 bg-card/70 p-6 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-primary/40 hover:bg-card sm:p-7"
     >
-      {/* Hover glow */}
-      <div className="pointer-events-none absolute -right-20 -top-20 h-52 w-52 rounded-full bg-primary/20 opacity-0 blur-3xl transition-opacity duration-700 group-hover:opacity-100" />
+      {/* Hover glow - optimized to radial gradient */}
+      <div 
+        className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full opacity-0 transition-opacity duration-700 group-hover:opacity-100" 
+        style={{ backgroundImage: "radial-gradient(circle at center, hsl(var(--primary) / 0.15), transparent 70%)" }}
+      />
 
       {/* Tag */}
 

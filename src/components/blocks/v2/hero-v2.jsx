@@ -57,27 +57,31 @@ export default function HeroV2() {
         style={{ x: orbX2, y: orbY2 }}
       >
         <div
-          className="hero-orb bg-primary/40"
-          style={{ width: 520, height: 520, top: -120, left: "-10%" }}
+          className="hero-orb"
+          style={{ width: 520, height: 520, top: -120, left: "-10%", "--orb-color": "oklch(0.62 0.22 252 / 0.4)", willChange: "transform" }}
         />
         <div
-          className="hero-orb bg-accent/30"
+          className="hero-orb"
           style={{
             width: 440,
             height: 440,
             top: "30%",
             right: "-8%",
             animation: "orbDrift 14s ease-in-out infinite",
+            "--orb-color": "oklch(0.82 0.15 195 / 0.3)",
+            willChange: "transform",
           }}
         />
         <div
-          className="hero-orb bg-primary/25"
+          className="hero-orb"
           style={{
             width: 360,
             height: 360,
             bottom: "-10%",
             left: "25%",
             animation: "floatSlow 12s ease-in-out infinite",
+            "--orb-color": "oklch(0.62 0.22 252 / 0.25)",
+            willChange: "transform",
           }}
         />
       </motion.div>
@@ -89,8 +93,7 @@ export default function HeroV2() {
       />
       <div 
         aria-hidden 
-        className="pointer-events-none absolute inset-0 -z-0 opacity-[0.03] mix-blend-overlay"
-        style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')" }} 
+        className="pointer-events-none absolute inset-0 -z-0 opacity-[0.03] mix-blend-overlay bg-noise"
       />
 
       {/* ── Floating SVG shapes ── */}

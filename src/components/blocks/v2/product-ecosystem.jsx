@@ -206,7 +206,7 @@ export default function ProductEcosystem() {
                   </div>
 
                   <a
-                    href="/category"
+                    href="/aqua-smart"
                     className="mt-8 inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-5 py-2.5 text-sm font-semibold text-accent transition-all hover:gap-3 hover:bg-accent/20"
                   >
                     Shop this scene
